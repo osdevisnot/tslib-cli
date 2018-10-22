@@ -39,7 +39,7 @@ del(['dist/', 'docs/']).then(() => {
     case 'publish':
       const version = process.argv[3] || log.error('Missing version. Try `tslib publish <major|minor|patch>`')
       exec(commands['build'])
-      const pub = [`npm version ${version}`, `npm pwublish`]
+      const pub = [`npm version ${version}`, `npm publish`]
       pub.forEach(cmd => exec(cmd))
       break
   }
