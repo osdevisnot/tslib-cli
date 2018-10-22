@@ -26,15 +26,14 @@ del(['dist/', 'docs/']).then(() => {
     case 'test':
     case 'coverage':
     case 'lint':
-      console.log(commands[command])
       exec(commands[command])
       break
     case 'docs':
       require('./docs')()
       break
     case 'deploy':
-      exec(commands['coverage'])
       require('./docs')()
+      exec(commands['coverage'])
       require('./deploy')()
       break
     case 'publish':

@@ -3,6 +3,7 @@ const paths = require('./paths')
 const $ = require('rollup-load-plugins')({ cwd: __dirname })
 const externals = require('rollup-node-externals')
 
+const log = require('./logger')
 const pkg = require(paths.forProject('./package.json'))
 
 const isDev = !!process.env.ROLLUP_WATCH
@@ -26,8 +27,18 @@ Version: <%= pkg.version %>
 Generated: <%= new Date().toISOString() %>
 `
 
+let input = null
+;['src/index.ts', 'src/exports.ts', `src/${pkg.name}.ts`].forEach(file => {
+  if (!input && fs.existsSync(file)) {
+    input = file
+  }
+})
+if (!input) {
+  log.error(`Missing input file. Tried ${inputFiles.join(',')}`)
+}
+
 const config = {
-  input: 'src/index.ts',
+  input,
   external: isDev ? [] : externals(),
   watch: { include: 'src/**' },
   plugins: [
