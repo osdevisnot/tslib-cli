@@ -9,14 +9,24 @@ const command = process.argv[2] || 'start'
 
 const paths = require('./paths')
 
+const exec = cmd => sync(cmd, { stdio: [0, 1, 2] })
+
 const commands = {
-  start: `${paths.forBin('rollup')} -c ${paths.forCli('rollup.config.js')} -w`
+  build: `${paths.forBin('rollup')} -c ${paths.forCli('rollup.config.js')}`,
+  test: `${paths.forBin('jest')} --watch`
 }
+commands['start'] = `${commands['build']} -w`
 
 del(['dist/', 'docs/']).then(() => {
   switch (command) {
     case 'start':
-      console.log(commands[command])
+      exec(commands[command])
+      break
+    case 'build':
+      exec(commands[command])
+      break
+    case 'test':
+      exec(commands[command])
       break
   }
 })
