@@ -8,10 +8,9 @@ const pkg = require(paths.forProject('./package.json'))
 
 const isDev = !!process.env.ROLLUP_WATCH
 
-const libName = pkg.name
-  .split('/')
-  .pop()
-  .replace(/-([a-z])/g, match => match[1].toUpperCase())
+const packageName = pkg.name.split('/').pop()
+
+const libName = packageName.replace(/-([a-z])/g, match => match[1].toUpperCase())
 
 const tsconfig = paths.forProject('tsconfig.json')
 
@@ -28,7 +27,7 @@ Generated: <%= new Date().toISOString() %>
 `
 
 let input = null
-;['src/index.ts', 'src/exports.ts', `src/${pkg.name}.ts`].forEach(file => {
+;['src/index.ts', 'src/exports.ts', `src/${packageName}.ts`].forEach(file => {
   if (!input && fs.existsSync(file)) {
     input = file
   }
