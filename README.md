@@ -1,3 +1,3 @@
-#tslib-cli
+# tslib-cli
 
-A CLI utility for
+> Maximum Overkill for Typescript Library Authors
