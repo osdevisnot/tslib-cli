@@ -3,6 +3,18 @@ cache:
   directories:
     - node_modules
 node_js:
-  - 8
   - 10
-script: degit osdevisnot/starter-typescript-library example-library && cd example-library && node setup.js && npm test && npm run build
+script:
+  - npm install -g degit && degit osdevisnot/starter-typescript-library example-library && cd example-library && node setup.js && npm run build && npm test
+jobs:
+  include:
+    - stage: npm release
+      if: tag IS present
+      node_js: '10'
+      deploy:
+        provider: npm
+        email: '$NPM_EMAIL'
+        api_key: '$NPM_TOKEN'
+        skip_cleanup: true
+        on:
+          tags: true
