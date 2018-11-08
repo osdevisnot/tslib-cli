@@ -5,4 +5,4 @@ cache:
 node_js:
   - 10
 script:
-  - npm install -g degit && degit osdevisnot/starter-typescript-library example-library && cd example-library && node setup.js && npm run build && npm test
+  - npm install -g degit && degit osdevisnot/starter-typescript-library example-library && cd example-library && node setup.js && npm run build && npm run coverage
