@@ -23,7 +23,7 @@ const htmlMinifierOptions = {
 const banner = `Bundle <%= pkg.name %>@<%= pkg.version %> generated on <%= new Date().toISOString() %>`
 
 let input = null
-;['src/index.ts', 'src/exports.ts', `src/${packageName}.ts`].forEach(file => {
+;[`src/${packageName}.ts`, 'src/exports.ts'].forEach(file => {
   if (!input && fs.existsSync(file)) {
     input = file
   }
@@ -34,13 +34,13 @@ if (!input) {
 
 const config = {
   input,
-  // external: isDev ? [] : externals(),
+  external: isDev ? [] : externals(),
   watch: { include: 'src/**' },
   plugins: [
     $.replace({ 'process.env.NODE_ENV': isDev ? JSON.stringify('DEVELOPMENT') : JSON.stringify('PRODUCTION') }),
     $.html(htmlMinifierOptions),
     $.json({ preferConst: true }),
-    isDev && $.nodeResolve({ jsnext: true, browser: true }),
+    isDev && $.nodeResolve({ jsnext: true }),
     $.typescript2({ useTsconfigDeclarationDir: true, tsconfig, typescript: require('typescript') }),
     isDev && $.tslint(),
     $.commonjs(),
@@ -52,14 +52,29 @@ const config = {
   ].filter(Boolean)
 }
 
-export default [
-  {
+const bundles = []
+
+if (pkg.main) {
+  bundles.push({ ...config, output: [{ file: pkg.main, format: 'cjs', sourcemap: true }] })
+}
+if (pkg.module) {
+  bundles.push({ ...config, output: [{ file: pkg.module, format: 'es', sourcemap: true }] })
+}
+if (pkg.browser) {
+  bundles.push({
     ...config,
-    output: [{ file: pkg.main, format: 'cjs', sourcemap: true }, { file: pkg.module, format: 'es', sourcemap: true }]
-  },
-  {
     output: [{ file: pkg.browser, format: 'iife', sourcemap: true, name: libName }],
-    ...config,
     plugins: [...config.plugins, $.terser.terser()]
-  }
-]
+  })
+}
+
+if (isDev && fs.existsSync('src/index.ts')) {
+  bundles.push({
+    ...config,
+    output: [{ file: 'dist/index.js', format: 'cjs', sourcemap: true }],
+    external: [],
+    input: 'src/index.ts'
+  })
+}
+
+export default bundles
