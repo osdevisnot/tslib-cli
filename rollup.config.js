@@ -54,20 +54,6 @@ const config = {
 
 const bundles = []
 
-if (pkg.main) {
-  bundles.push({ ...config, output: [{ file: pkg.main, format: 'cjs', sourcemap: true }] })
-}
-if (pkg.module) {
-  bundles.push({ ...config, output: [{ file: pkg.module, format: 'es', sourcemap: true }] })
-}
-if (pkg.browser) {
-  bundles.push({
-    ...config,
-    output: [{ file: pkg.browser, format: 'iife', sourcemap: true, name: libName }],
-    plugins: [...config.plugins, $.terser.terser()]
-  })
-}
-
 if (isDev && fs.existsSync('src/index.ts')) {
   bundles.push({
     ...config,
@@ -75,6 +61,20 @@ if (isDev && fs.existsSync('src/index.ts')) {
     external: [],
     input: 'src/index.ts'
   })
+} else {
+  if (pkg.main) {
+    bundles.push({ ...config, output: [{ file: pkg.main, format: 'cjs', sourcemap: true }] })
+  }
+  if (pkg.module) {
+    bundles.push({ ...config, output: [{ file: pkg.module, format: 'es', sourcemap: true }] })
+  }
+  if (pkg.browser) {
+    bundles.push({
+      ...config,
+      output: [{ file: pkg.browser, format: 'iife', sourcemap: true, name: libName }],
+      plugins: [...config.plugins, $.terser.terser()]
+    })
+  }
 }
 
 export default bundles
