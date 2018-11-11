@@ -20,7 +20,7 @@
     "@types/node": "10.12.5",
     "del": "3.0.0",
     "jest": "23.6.0",
-    "rollup": "0.67.0",
+    "rollup": "0.67.1",
     "rollup-load-plugins": "0.4.0",
     "rollup-node-externals": "0.0.1-2",
     "rollup-plugin-cleanup": "3.0.0",
