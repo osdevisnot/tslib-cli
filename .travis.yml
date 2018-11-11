@@ -8,4 +8,4 @@ script:
   - npm install -g degit && degit osdevisnot/starter-typescript-library example-library && cd example-library && node setup.js && npm run build && npm run coverage
 deploy:
   provider: script
-  script: 'npm version patch && npm publish && git push --follow-tags'
+  script: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > $HOME/.npmrc && npm version patch && npm publish && git push --follow-tags'
