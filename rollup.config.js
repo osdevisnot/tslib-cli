@@ -42,7 +42,7 @@ const config = {
     $.json({ preferConst: true }),
     isDev && $.nodeResolve({ jsnext: true }),
     $.typescript2({ useTsconfigDeclarationDir: true, tsconfig, typescript: require('typescript') }),
-    isDev && $.tslint(),
+    // isDev && $.tslint(),
     $.commonjs(),
     $.cleanup({ comments: 'none' }),
     $.license({ banner }),
