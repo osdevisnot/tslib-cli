@@ -5,7 +5,7 @@ cache:
 node_js:
   - 10
 script:
-  - npm install -g degit && degit osdevisnot/starter-typescript-library example-library && cd example-library && node setup.js && npm run build && npm run coverage
+  - npm install -g degit && degit osdevisnot/starter-typescript-library example-library && cd example-library && node setup.js && npm run build && npm run coverage && cd .. && rm -rf example-library
 deploy:
   provider: script
-  script: 'cd .. && rm -rf example-library && echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > $HOME/.npmrc && npm version patch && npm publish && git push --follow-tags'
+  script: 'echo "//registry.npmjs.org/:_authToken=${NPM_TOKEN}" > $HOME/.npmrc && npm version patch && npm publish && git push --follow-tags'
