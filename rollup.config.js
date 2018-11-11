@@ -6,7 +6,7 @@ const externals = require('rollup-node-externals')
 const log = require('./logger')
 const pkg = require(paths.forProject('./package.json'))
 
-const isDev = !!process.env.ROLLUP_WATCH
+const isDev = process.env.ACTION === 'watch' ? false : !!process.env.ROLLUP_WATCH
 
 const packageName = pkg.name.split('/').pop()
 
@@ -54,7 +54,7 @@ const config = {
 
 const bundles = []
 
-if (isDev && fs.existsSync('src/index.ts')) {
+if (process.env.ACTION !== 'watch' && (isDev && fs.existsSync('src/index.ts'))) {
   bundles.push({
     ...config,
     output: [{ file: 'dist/index.js', format: 'cjs', sourcemap: true }],

@@ -12,17 +12,19 @@ const command = process.argv[2] || 'start'
 const exec = cmd => sync(cmd, { stdio: [0, 1, 2] })
 
 const commands = {
-  build: `${paths.forBin('rollup')} -c ${paths.forCli('rollup.config.js')}`,
+  build: `${paths.forBin('rollup')} -c ${paths.forCli('rollup.config.js')} --environment ACTION:build`,
   test: `${paths.forBin('jest')} --watch`,
   coverage: `${paths.forBin('jest')} --coverage`,
   lint: `${paths.forBin('tslint')} 'src/**/*.{ts,tsx}'`
 }
-commands['start'] = `${commands['build']} -w`
+commands['start'] = `${commands['build']} -w --environment ACTION:start`
+commands['watch'] = `${commands['build']} -w --environment ACTION:watch`
 
 del(['dist/', 'docs/']).then(() => {
   switch (command) {
     case 'start':
     case 'build':
+    case 'watch':
     case 'test':
     case 'coverage':
     case 'lint':
