@@ -52,7 +52,8 @@ const config = {
     $.license({ banner }),
     $.sourcemaps(),
     isDev && $.serve({ contentBase: ['public', 'dist'], historyApiFallback: true, port: 4444 }),
-    isDev && $.livereload('dist')
+    isDev && $.livereload('dist'),
+    !isDev && $.filesize()
   ].filter(Boolean)
 }
 
