@@ -15,7 +15,8 @@ const commands = {
   build: `${paths.forBin('rollup')} -c ${paths.forCli('rollup.config.js')} --environment ACTION:build`,
   test: `${paths.forBin('jest')} --watch`,
   coverage: `${paths.forBin('jest')} --coverage`,
-  lint: `${paths.forBin('tslint')} 'src/**/*.{ts,tsx}'`
+  lint: `${paths.forBin('tslint')} 'src/**/*.{ts,tsx}'`,
+  e2e: `${paths.forBin('cypress')} open`
 }
 commands['start'] = `${commands['build']} -w --environment ACTION:start`
 commands['watch'] = `${commands['build']} -w --environment ACTION:watch`
@@ -27,6 +28,7 @@ del(['dist/', 'docs/']).then(() => {
     case 'watch':
     case 'test':
     case 'coverage':
+    case 'e2e':
     case 'lint':
       exec(commands[command])
       break
@@ -41,7 +43,7 @@ del(['dist/', 'docs/']).then(() => {
     case 'publish':
       const version = process.argv[3] || log.error('Missing version. Try `tslib publish <major|minor|patch>`')
       exec(commands['build'])
-      const pub = [`npm version ${version}`, `npm publish`]
+      const pub = [`npm version ${version}`, `npm publish`, 'git push --follow-tags']
       pub.forEach(cmd => exec(cmd))
       break
   }
