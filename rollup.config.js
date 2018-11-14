@@ -35,13 +35,17 @@ if (!input) {
 const config = {
   input,
   external: isDev ? [] : externals(),
-  watch: { include: 'src/**' },
   plugins: [
     $.replace({ 'process.env.NODE_ENV': isDev ? JSON.stringify('DEVELOPMENT') : JSON.stringify('PRODUCTION') }),
     $.html(htmlMinifierOptions),
     $.json({ preferConst: true }),
     isDev && $.nodeResolve({ jsnext: true }),
-    $.typescript2({ useTsconfigDeclarationDir: true, tsconfig, typescript: require('typescript') }),
+    $.typescript2({
+      useTsconfigDeclarationDir: true,
+      tsconfig,
+      tsconfigOverride: isDev ? {} : { include: ['src'], exclude: ['src/index.ts'] },
+      typescript: require('typescript')
+    }),
     // isDev && $.tslint(),
     $.commonjs(),
     $.cleanup({ comments: 'none' }),
