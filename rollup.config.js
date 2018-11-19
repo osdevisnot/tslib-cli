@@ -23,12 +23,13 @@ const htmlMinifierOptions = {
 const banner = `Bundle <%= pkg.name %>@<%= pkg.version %> generated on <%= new Date().toISOString() %>`
 
 let input = null
-;[`src/${packageName}.ts`, 'src/exports.ts'].forEach(file => {
+const inputFiles = [`src/${packageName}.ts`, 'src/exports.ts']
+inputFiles.forEach(file => {
   if (!input && fs.existsSync(file)) {
     input = file
   }
 })
-if (!input) {
+if (!input && !isDev) {
   log.error(`Missing input file. Tried ${inputFiles.join(',')}`)
 }
 
@@ -59,12 +60,13 @@ const config = {
 
 const bundles = []
 
-if (process.env.ACTION !== 'watch' && (isDev && fs.existsSync('src/index.ts'))) {
+if (process.env.ACTION !== 'watch' && isDev) {
+  input = fs.existsSync('src/index.ts') ? 'src/index.ts' : 'src/index.js'
   bundles.push({
     ...config,
     output: [{ file: 'dist/index.js', format: 'cjs', sourcemap: true }],
     external: [],
-    input: 'src/index.ts'
+    input
   })
 } else {
   if (pkg.main) {

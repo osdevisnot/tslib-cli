@@ -8,8 +8,8 @@
   },
   "scripts": {
     "prepub": "npm run setup",
-    "pub": "npm version patch",
-    "postpub": "npm publish",
+    "pub": "npm version patch && npm publish",
+    "postpub": "git push --follow-tags",
     "presetup": "git clean -fdX",
     "setup": "npm install",
     "postsetup": "npm link"
