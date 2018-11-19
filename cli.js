@@ -15,8 +15,7 @@ const commands = {
   build: `${paths.forBin('rollup')} -c ${paths.forCli('rollup.config.js')} --environment ACTION:build`,
   test: `${paths.forBin('jest')} --watch`,
   coverage: `${paths.forBin('jest')} --coverage`,
-  lint: `${paths.forBin('tslint')} 'src/**/*.{ts,tsx}'`,
-  e2e: `${paths.forBin('cypress')} open`
+  lint: `${paths.forBin('tslint')} 'src/**/*.{ts,tsx}'`
 }
 commands['start'] = `${commands['build']} -w --environment ACTION:start`
 commands['watch'] = `${commands['build']} -w --environment ACTION:watch`
@@ -28,7 +27,6 @@ del(['dist/', 'docs/']).then(() => {
     case 'watch':
     case 'test':
     case 'coverage':
-    case 'e2e':
     case 'lint':
       exec(commands[command])
       break

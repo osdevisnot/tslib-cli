@@ -51,7 +51,7 @@ const config = {
     $.cleanup({ comments: 'none' }),
     $.license({ banner }),
     $.sourcemaps(),
-    isDev && $.serve({ contentBase: ['public', 'dist', 'cypress/fixtures'], historyApiFallback: true, port: 4444 }),
+    isDev && $.serve({ contentBase: ['public', 'dist'], historyApiFallback: true, port: 4444 }),
     isDev && $.livereload('dist'),
     !isDev && $.filesize()
   ].filter(Boolean)
