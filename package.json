@@ -26,7 +26,6 @@
     "jest": "23.6.0",
     "rollup": "0.67.3",
     "rollup-load-plugins": "0.4.0",
-    "rollup-node-externals": "0.0.1-2",
     "rollup-plugin-cleanup": "3.0.0",
     "rollup-plugin-commonjs": "9.2.0",
     "rollup-plugin-filesize": "5.0.1",

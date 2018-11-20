@@ -1,7 +1,6 @@
 const fs = require('fs')
 const paths = require('./paths')
 const $ = require('rollup-load-plugins')({ cwd: __dirname })
-const externals = require('rollup-node-externals')
 
 const log = require('./logger')
 const pkg = require(paths.forProject('./package.json'))
@@ -33,9 +32,16 @@ if (!input && !isDev) {
   log.error(`Missing input file. Tried ${inputFiles.join(',')}`)
 }
 
+const external = []
+;['dependencies', 'devDependencies', 'peerDependencies', 'optionalDependencies'].forEach(dep => {
+  if (pkg && pkg[dep]) {
+    Object.keys(pkg[dep]).map(d => external.push(d))
+  }
+})
+
 const config = {
   input,
-  external: isDev ? [] : externals(),
+  external: isDev ? [] : external,
   plugins: [
     $.replace({ 'process.env.NODE_ENV': isDev ? JSON.stringify('DEVELOPMENT') : JSON.stringify('PRODUCTION') }),
     $.html(htmlMinifierOptions),
