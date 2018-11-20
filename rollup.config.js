@@ -40,7 +40,7 @@ const config = {
     $.replace({ 'process.env.NODE_ENV': isDev ? JSON.stringify('DEVELOPMENT') : JSON.stringify('PRODUCTION') }),
     $.html(htmlMinifierOptions),
     $.json({ preferConst: true }),
-    isDev && $.nodeResolve({ jsnext: true }),
+    $.nodeResolve({ jsnext: true }),
     $.typescript2({
       useTsconfigDeclarationDir: true,
       tsconfig,
@@ -79,7 +79,8 @@ if (process.env.ACTION !== 'watch' && isDev) {
     bundles.push({
       ...config,
       output: [{ file: pkg.browser, format: 'iife', sourcemap: true, name: libName }],
-      plugins: [...config.plugins, $.terser.terser()]
+      plugins: [...config.plugins, $.terser.terser()],
+      external: []
     })
   }
 }
