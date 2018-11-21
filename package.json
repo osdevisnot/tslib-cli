@@ -48,7 +48,7 @@
     "typescript": "3.1.6"
   },
   "devDependencies": {
-    "husky": "1.1.4",
+    "husky": "1.2.0",
     "lint-staged": "8.0.5",
     "prettier": "1.15.2",
     "sort-package-json": "1.16.0"
