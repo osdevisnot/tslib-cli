@@ -3,48 +3,36 @@
   "version": "0.0.19",
   "description": "Maximum Overkill for Typescript Library Authors",
   "license": "MIT",
-  "bin": {
-    "tslib": "cli.js"
-  },
+  "main": "index.js",
   "scripts": {
     "prepub": "npm run setup",
     "pub": "npm version patch && npm publish",
     "postpub": "git push --follow-tags",
     "presetup": "git clean -fdX",
-    "setup": "npm install",
-    "postsetup": "npm link"
+    "setup": "npm install"
   },
   "husky": {
     "hooks": {
       "pre-commit": "lint-staged"
     }
   },
+  "prettier": {
+    "printWidth": 120,
+    "singleQuote": true
+  },
   "dependencies": {
-    "@types/jest": "23.3.9",
-    "@types/node": "10.12.9",
-    "del": "3.0.0",
-    "jest": "23.6.0",
     "rollup": "0.67.3",
-    "rollup-load-plugins": "0.4.0",
-    "rollup-plugin-cleanup": "3.0.0",
     "rollup-plugin-commonjs": "9.2.0",
     "rollup-plugin-filesize": "5.0.1",
     "rollup-plugin-html": "0.2.1",
     "rollup-plugin-json": "3.1.0",
-    "rollup-plugin-license": "0.7.0",
     "rollup-plugin-livereload": "0.6.0",
+    "rollup-plugin-multi-entry": "2.0.2",
     "rollup-plugin-node-resolve": "3.4.0",
     "rollup-plugin-replace": "2.1.0",
     "rollup-plugin-serve": "0.6.0",
-    "rollup-plugin-sourcemaps": "0.4.2",
     "rollup-plugin-terser": "3.0.0",
-    "rollup-plugin-tslint": "0.1.38",
     "rollup-plugin-typescript2": "0.18.0",
-    "ts-jest": "23.10.4",
-    "tslint": "5.11.0",
-    "tslint-config-airbnb": "5.11.1",
-    "tslint-config-prettier": "1.16.0",
-    "typedoc": "0.13.0",
     "typescript": "3.1.6"
   },
   "devDependencies": {
