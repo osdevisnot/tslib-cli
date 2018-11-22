@@ -4,12 +4,3 @@ cache:
     - node_modules
 node_js:
   - 10
-before_deploy:
-  - npm version patch
-deploy:
-  provider: npm
-  email: "$NPM_EMAIL"
-  api_key: "NPM_TOKEN"
-after_deploy:
-  - git push --follow-tags
-  
