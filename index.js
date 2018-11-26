@@ -19,6 +19,7 @@ const config = options => ({
   input: options.input,
   output: options.output,
   external: options.external,
+  globals: options.globals,
   plugins: [
     multiEntry(),
     replace({ 'process.env.NODE_ENV': isDev ? JSON.stringify('DEVELOPMENT') : JSON.stringify('PRODUCTION') }),
