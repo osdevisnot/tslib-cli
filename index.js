@@ -18,8 +18,7 @@ const tsconfig = path.join(process.cwd(), 'tsconfig.json');
 const config = options => ({
   input: options.input,
   output: options.output,
-  external: options.external,
-  globals: options.globals,
+  external: options.external || [],
   plugins: [
     multiEntry(),
     replace({ 'process.env.NODE_ENV': isDev ? JSON.stringify('DEVELOPMENT') : JSON.stringify('PRODUCTION') }),
