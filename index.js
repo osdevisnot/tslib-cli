@@ -11,6 +11,7 @@ const serve = require('rollup-plugin-serve');
 const livereload = require('rollup-plugin-livereload');
 const terser = require('rollup-plugin-terser').terser;
 const filesize = require('rollup-plugin-filesize');
+const minifyHtml = require('rollup-plugin-minify-html-literals').default;
 
 const isDev = !!process.env.ROLLUP_WATCH;
 const tsconfig = path.join(process.cwd(), 'tsconfig.json');
@@ -21,6 +22,7 @@ const config = options => ({
   external: options.external || [],
   plugins: [
     multiEntry(),
+    minifyHtml(),
     replace({ 'process.env.NODE_ENV': isDev ? JSON.stringify('DEVELOPMENT') : JSON.stringify('PRODUCTION') }),
     html({ collapseWhitespace: true, quoteCharacter: "'", removeComments: true }),
     json({ preferConst: true }),
