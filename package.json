@@ -1,6 +1,6 @@
 {
   "name": "tslib-cli",
-  "version": "0.0.26",
+  "version": "0.0.27",
   "description": "Maximum Overkill for Typescript Library Authors",
   "license": "MIT",
   "main": "index.js",
