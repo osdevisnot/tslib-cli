@@ -24,7 +24,7 @@
     "@types/jest": "23.3.10",
     "@types/node": "10.12.10",
     "jest": "23.6.0",
-    "rollup": "0.67.3",
+    "rollup": "0.67.4",
     "rollup-plugin-commonjs": "9.2.0",
     "rollup-plugin-filesize": "5.0.1",
     "rollup-plugin-html": "0.2.1",
