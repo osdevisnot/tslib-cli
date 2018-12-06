@@ -1,6 +1,7 @@
 # tslib-cli
 
 [![Greenkeeper badge](https://badges.greenkeeper.io/osdevisnot/tslib-cli.svg)](https://greenkeeper.io/)
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fosdevisnot%2Ftslib-cli.svg?type=shield)](https://app.fossa.io/projects/git%2Bgithub.com%2Fosdevisnot%2Ftslib-cli?ref=badge_shield)
 
 > Maximum Overkill for Typescript Library Authors
 
@@ -45,3 +46,7 @@ Add scripts to your package json:
   "start": "rollup -wc"
 }
 ```
+
+
+## License
+[![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fosdevisnot%2Ftslib-cli.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fosdevisnot%2Ftslib-cli?ref=badge_large)
