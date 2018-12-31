@@ -21,7 +21,7 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@types/jest": "23.3.10",
+    "@types/jest": "23.3.11",
     "@types/node": "10.12.10",
     "jest": "23.6.0",
     "rollup": "0.67.3",
