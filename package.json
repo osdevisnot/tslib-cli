@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "@types/jest": "23.3.12",
-    "@types/node": "10.12.18",
+    "@types/node": "10.12.22",
     "jest": "23.6.0",
     "rollup": "1.1.0",
     "rollup-plugin-commonjs": "9.2.0",
