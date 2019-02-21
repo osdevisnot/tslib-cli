@@ -37,7 +37,7 @@ const config = options => ({
     isDev && options.devServer && serve({ contentBase: ['public', 'dist'], historyApiFallback: true, port: 1234 }),
     isDev && options.devServer && livereload('dist'),
     !isDev && options.minify && terser(),
-    !isDev && filesize()
+    !isDev && filesize({ showBrotliSize: true })
   ]
 });
 
