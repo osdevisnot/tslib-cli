@@ -54,7 +54,7 @@
     "typedoc": "0.14.2",
     "typedoc-plugin-external-module-name": "2.0.0",
     "typedoc-plugin-internal-external": "2.0.1",
-    "typedoc-plugin-markdown": "1.1.26",
+    "typedoc-plugin-markdown": "1.1.27",
     "typedoc-plugin-no-inherit": "1.1.6",
     "typescript": "3.3.3"
   },
