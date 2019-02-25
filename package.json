@@ -46,7 +46,7 @@
     "rollup-plugin-replace": "2.1.0",
     "rollup-plugin-serve": "1.0.1",
     "rollup-plugin-terser": "4.0.4",
-    "rollup-plugin-typescript2": "0.19.2",
+    "rollup-plugin-typescript2": "0.19.3",
     "ts-jest": "24.0.0",
     "tslint": "5.12.1",
     "tslint-config-airbnb": "5.11.1",
