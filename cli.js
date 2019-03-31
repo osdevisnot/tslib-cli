@@ -28,8 +28,8 @@ switch (command) {
   case 'docs':
     cmd.push(`${getBin('typedoc')}`);
     break;
-  case 'publish':
-    cmd.push(`yarn publish`, 'git push --follow-tags');
+  case 'pub':
+    cmd.push('tslib setup', 'tslib docs', `yarn publish`, 'git push --follow-tags');
     break;
 }
 
