@@ -4,44 +4,16 @@
 
 > Maximum Overkill for Typescript Library Authors
 
-## Usage:
+## Usage
 
-Install this package as dev dependency:
+Ensure you have `degit` installed.
 
-```
-yarn add --dev tslib-cli
-```
-
-Create a rollup.config.js file at root of your project:
-
-```
-const bundles = require('tslib-cli');
-
-export default bundles([
-  {
-    input: 'src/library.ts', // your library src code
-    output: { format: 'cjs', file: 'dist/cjs/index.js' },
-    tsconfigOverride: { compilerOptions: { target: 'es5' } },
-    external: ['lit-html']
-  },
-  {
-    input: 'src/library.ts', // your library src code
-    output: { format: 'es', file: 'dist/esm/index.js' },
-    external: ['lit-html']
-  },
-  {
-    input: 'src/library.ts', // your library src code
-    output: { format: 'iife', file: 'dist/mylib.js', name: 'mylib' },
-    tsconfigOverride: { compilerOptions: { target: 'es5' } }
-  },
-]);
+```bash
+npm install -g degit
 ```
 
-Add scripts to your package json:
+To create a new project based on this `tslib-cli`:
 
-```
-"scripts": {
-  "build": "rollup -c",
-  "start": "rollup -wc"
-}
+```bash
+degit osdevisnot/starter-typescript-library my-app && cd $_ && node setup.js
 ```
