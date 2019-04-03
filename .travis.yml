@@ -8,4 +8,4 @@ node_js:
 before_script:
   - git config --global user.email "your@gmail.com"
   - git config --global user.name "your name"
-script: npm link && tslib init my-lib && cd my-lib && tslib build && tslib coverage && tslib setup
+script: npm link && tslib init my-lib --verbose && cd my-lib && tslib build --verbose && tslib coverage --verbose && tslib setup --verbose
