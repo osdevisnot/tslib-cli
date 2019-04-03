@@ -1,62 +1,78 @@
 #!/usr/bin/env node
 
-const path = require('path');
-const chalk = require('chalk');
-const exists = require('fs').existsSync;
-const sync = require('child_process').execSync;
+const path = require('path')
+const getopts = require('getopts')
+const del = require('del')
+const commands = require('./commands.json')
+const { run, getBin } = require('./exece')
 
-const commands = {
-  START: 'start',
-  BUILD: 'build',
-  TEST: 'test',
-  COVERAGE: 'coverage',
-  SETUP: 'setup',
-  DOCS: 'docs',
-  PUB: 'pub'
-};
-
-const command = process.argv[2];
-let cmd = [];
-
-const getBin = p => path.join('node_modules', '.bin', p);
-const scheduleCommand = (shell, file) => {
-  if (exists(file)) {
-    cmd.push(shell);
-  } else {
-    console.log(
-      chalk.gray('-----> Skipping Command: ') +
-        chalk.gray(shell.replace('node_modules/.bin/', '') + ` (${file} not found.)`)
-    );
+const {
+  _: [command, ...args],
+  ...options
+} = getopts(process.argv.slice(2), {
+  default: {
+    cache: true,
+    verbose: false,
+    force: false,
+    template: 'osdevisnot/starter-typescript-library'
+  },
+  alias: {
+    t: 'template'
   }
-};
+})
+const { log, error } = require('./console')(options)
+
+log('TCL: Firing command', command)
+log('TCL: with args', args)
+log('TCL: and options', JSON.stringify(options))
+
+let cmd = []
 
 switch (command) {
+  case commands.INIT:
+    let [dest] = args
+    log('TCL: dest', dest)
+    if (dest) {
+      const degit = require('degit')
+      const emitter = degit(options.template, options)
+      emitter.on('info', info => console.log(info.message))
+      emitter.clone(dest).then(() => {
+        run('node setup.js', path.join(dest, 'setup.js'), { cwd: dest })
+      })
+    } else {
+      error('Insufficient Arguments. See Usage!!')
+    }
+    break
   case commands.START:
-    scheduleCommand(`${getBin('rollup')} -wc`, 'rollup.config.js');
-    break;
+    run(`${getBin('rollup')} -wc`, 'rollup.config.js')
+    break
   case commands.BUILD:
-    scheduleCommand(`${getBin('rollup')} -c`, 'rollup.config.js');
-    break;
+    run(`${getBin('rollup')} -c`, 'rollup.config.js')
+    break
   case commands.TEST:
-    scheduleCommand(`${getBin('jest')} --watch`, 'jest.config.js');
-    break;
+    run(`${getBin('jest')} --watch`, 'jest.config.js')
+    break
   case commands.COVERAGE:
-    scheduleCommand(`${getBin('jest')} --coverage`, 'jest.config.js');
-    break;
+    run(`${getBin('jest')} --coverage`, 'jest.config.js')
+    break
   case commands.SETUP:
-    cmd.push('git clean -fdX', 'rm -rf package-lock.json', 'yarn', 'pika-web', 'tslib build', 'tslib coverage');
-    break;
+    run('git clean -fdX')
+    del('package-lock.json')
+    run('yarn')
+    run('pika-web')
+    run('tslib build')
+    run('tslib coverage')
+    run('tslib docs')
+    break
   case commands.DOCS:
-    scheduleCommand(`${getBin('typedoc')}`, 'typedoc.js');
-    break;
+    run(`${getBin('typedoc')}`, 'typedoc.js')
+    break
   case commands.PUB:
-    cmd.push('tslib setup', 'tslib docs', `yarn publish`, 'git push --follow-tags');
-    break;
+    run('tslib setup')
+    run('tslib docs')
+    run('yarn publish')
+    run('git push --follow-tags')
+    break
   default:
-    console.log('Available Commands: ', Object.values(commands));
+    console.log('Available Commands: ', Object.values(commands).join(', '))
 }
-
-cmd.forEach(shell => {
-  console.log(chalk.green('-----> Executing Command: ') + chalk.green.bold(shell.replace('node_modules/.bin/', '')));
-  sync(shell, { stdio: 'inherit' });
-});

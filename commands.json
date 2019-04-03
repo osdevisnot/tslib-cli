@@ -1,0 +1,10 @@
+{
+  "INIT": "init",
+  "START": "start",
+  "BUILD": "build",
+  "TEST": "test",
+  "COVERAGE": "coverage",
+  "DOCS": "docs",
+  "PUB": "pub",
+  "SETUP": "setup"
+}
