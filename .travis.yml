@@ -5,4 +5,7 @@ cache:
 node_js:
   - 10
   - 11
+before_script:
+  - git config --global user.email "your@gmail.com"
+  - git config --global user.name "your name"
 script: npm link && tslib init my-lib && cd my-lib && tslib build && tslib coverage && tslib setup
