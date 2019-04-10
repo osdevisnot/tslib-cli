@@ -42,7 +42,7 @@
     "degit": "2.1.3",
     "getopts": "2.2.4",
     "jest": "24.7.1",
-    "rollup": "1.9.1",
+    "rollup": "1.9.2",
     "rollup-plugin-commonjs": "9.3.4",
     "rollup-plugin-filesize": "6.0.1",
     "rollup-plugin-html": "0.2.1",
