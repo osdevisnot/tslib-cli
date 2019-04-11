@@ -33,12 +33,12 @@ switch (command) {
     let [dest] = args
     log('TCL: dest', dest)
     if (dest) {
-      const degit = require('degit')
-      const emitter = degit(options.template, options)
-      emitter.on('info', info => console.log(info.message))
-      emitter.clone(dest).then(() => {
-        run('node setup.js', path.join(dest, 'setup.js'), { cwd: dest })
-      })
+      const gittar = require('gittar')
+      gittar.fetch('github:osdevisnot/starter-typescript-library').then(res =>
+        gittar.extract(res, dest).then(() => {
+          run('node setup.js', path.join(dest, 'setup.js'), { cwd: dest })
+        })
+      )
     } else {
       error('Insufficient Arguments. See Usage!!')
     }
