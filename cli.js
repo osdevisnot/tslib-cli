@@ -59,7 +59,6 @@ switch (command) {
     run('git clean -fdX')
     del('package-lock.json')
     run('yarn')
-    run('pika-web')
     run('tslib build')
     run('tslib coverage')
     run('tslib docs')
@@ -70,6 +69,7 @@ switch (command) {
   case commands.PUB:
     run('tslib setup')
     run('tslib docs')
+    run('git diff --quiet')
     run('yarn publish')
     run('git push --follow-tags')
     break
