@@ -15,7 +15,6 @@ const config = options => ({
     $.replace({ 'process.env.NODE_ENV': isDev ? JSON.stringify('DEVELOPMENT') : JSON.stringify('PRODUCTION') }),
     $.html({ collapseWhitespace: true, quoteCharacter: "'", removeComments: true }),
     $.json({ preferConst: true }),
-    isDev && $.unpkg(),
     $.nodeResolve(),
     $.typescript2({
       useTsconfigDeclarationDir: true,
