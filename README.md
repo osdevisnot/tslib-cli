@@ -17,8 +17,8 @@ An opinionated wrapper around `typescript`, `rollup`, `jest` and `typedoc`
 
 ### TODOS
 
-- [x] Support Javascript only projects
-- [x] Reduce config files (0cJS)
+- [ ] Support Javascript only projects
+- [ ] Reduce config files (0cJS)
 
 ## Usage
 
