@@ -28,7 +28,7 @@ const config = options => ({
     isDev && options.devServer && $.livereload('dist'),
     !isDev && options.minify && $.terser.terser(),
     !isDev && $.filesize({ showBrotliSize: true })
-  ]
+  ].filter(Boolean)
 })
 
 module.exports = function(bundles) {

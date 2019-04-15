@@ -14,5 +14,6 @@ module.exports = {
       console.error(chalk.gray(`-----> Skipping Command: ${cmd} (${configFile} not found.)`))
     }
   },
-  getBin: p => path.join('node_modules', '.bin', p)
+  getBin: p => path.join('node_modules', '.bin', p),
+  getRoot: p => path.join(__dirname, p)
 }
