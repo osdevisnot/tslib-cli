@@ -4,7 +4,7 @@ const path = require('path')
 const getopts = require('getopts')
 const del = require('del')
 const commands = require('./commands.json')
-const { run, getBin } = require('./exece')
+const { run, getBin, getRoot } = require('./exece')
 
 const {
   _: [command, ...args],
@@ -64,7 +64,7 @@ switch (command) {
     run('tslib docs')
     break
   case commands.DOCS:
-    run(`${getBin('typedoc')}`, 'typedoc.js')
+    run(`${getBin('typedoc')} --options ${getRoot('typedoc.js')}`)
     break
   case commands.PUB:
     run('tslib setup')
