@@ -25,7 +25,14 @@ const config = options => ({
     $.commonjs(),
     isDev && options.devServer && $.serve({ contentBase: ['public', 'dist'], historyApiFallback: true, port: 1234 }),
     isDev && options.devServer && $.livereload('dist'),
-    !isDev && options.minify && $.terser.terser(),
+    !isDev &&
+      options.minify &&
+      $.terser.terser({
+        ecma: 6,
+        mangle: {
+          properties: { regex: new RegExp('^_') }
+        }
+      }),
     !isDev && $.filesize({ showBrotliSize: true })
   ].filter(Boolean)
 })
