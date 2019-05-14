@@ -65,7 +65,7 @@
     "typedoc-plugin-external-module-name": "2.0.0",
     "typedoc-plugin-internal-external": "2.0.2",
     "typedoc-plugin-markdown": "1.2.0",
-    "typedoc-plugin-no-inherit": "1.1.6",
+    "typedoc-plugin-no-inherit": "1.1.7",
     "typescript": "3.4.5"
   },
   "devDependencies": {
