@@ -47,7 +47,9 @@ switch (command) {
     run(`${getBin('rollup')} -wc`, 'rollup.config.js')
     break
   case commands.BUILD:
-    run(`${getBin('rollup')} -c`, 'rollup.config.js')
+    del('dist').then(_ => {
+      run(`${getBin('rollup')} -c`, 'rollup.config.js')
+    })
     break
   case commands.TEST:
     run(`${getBin('jest')} --watch`, 'jest.config.js')
@@ -57,6 +59,7 @@ switch (command) {
     break
   case commands.SETUP:
     run('git clean -fdX')
+    del('yarn.lock')
     del('package-lock.json')
     run('yarn')
     run('tslib build')
