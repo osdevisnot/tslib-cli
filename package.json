@@ -37,22 +37,22 @@
     "singleQuote": true
   },
   "dependencies": {
-    "@types/jest": "24.0.13",
-    "@types/node": "12.0.7",
+    "@types/jest": "24.0.15",
+    "@types/node": "12.0.8",
     "del": "4.1.1",
     "getopts": "2.2.4",
     "gittar": "0.1.1",
     "jest": "24.8.0",
-    "rollup": "1.14.6",
+    "rollup": "1.15.6",
     "rollup-load-plugins": "0.4.0",
     "rollup-plugin-commonjs": "10.0.0",
     "rollup-plugin-filesize": "6.1.0",
     "rollup-plugin-html": "0.2.1",
     "rollup-plugin-json": "4.0.0",
-    "rollup-plugin-livereload": "1.0.0",
+    "rollup-plugin-livereload": "1.0.1",
     "rollup-plugin-minify-html-literals": "1.2.2",
     "rollup-plugin-multi-entry": "2.1.0",
-    "rollup-plugin-node-resolve": "5.0.1",
+    "rollup-plugin-node-resolve": "5.0.3",
     "rollup-plugin-replace": "2.2.0",
     "rollup-plugin-serve": "1.0.1",
     "rollup-plugin-terser": "5.0.0",
@@ -64,13 +64,13 @@
     "typedoc": "0.14.2",
     "typedoc-plugin-external-module-name": "2.1.0",
     "typedoc-plugin-internal-external": "2.0.2",
-    "typedoc-plugin-markdown": "1.2.1",
+    "typedoc-plugin-markdown": "2.0.0",
     "typedoc-plugin-no-inherit": "1.1.8",
-    "typescript": "3.5.1"
+    "typescript": "3.5.2"
   },
   "devDependencies": {
-    "husky": "2.4.0",
-    "lint-staged": "8.2.0",
+    "husky": "2.4.1",
+    "lint-staged": "8.2.1",
     "prettier": "1.18.2",
     "sort-package-json": "1.22.1"
   }
