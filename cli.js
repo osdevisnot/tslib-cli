@@ -2,9 +2,8 @@
 
 const path = require('path')
 const getopts = require('getopts')
+const chalk = require('chalk')
 const del = require('del')
-const commands = require('./commands.json')
-const { run, getBin, getRoot } = require('./exece')
 
 const {
   _: [command, ...args],
@@ -20,18 +19,19 @@ const {
     t: 'template'
   }
 })
-const { log, error } = require('./console')(options)
 
-log('TCL: Firing command', command)
-log('TCL: with args', args)
-log('TCL: and options', JSON.stringify(options))
+const { debug, run, paths, commands } = require('./utils')(options)
+
+debug('TCL: Firing command', command)
+debug('TCL: with args', args)
+debug('TCL: and options', JSON.stringify(options))
 
 let cmd = []
 
 switch (command) {
   case commands.INIT:
     let [dest] = args
-    log('TCL: dest', dest)
+    debug('TCL: dest', dest)
     if (dest) {
       const gittar = require('gittar')
       gittar.fetch('github:osdevisnot/starter-typescript-library').then(res =>
@@ -40,22 +40,22 @@ switch (command) {
         })
       )
     } else {
-      error('Insufficient Arguments. See Usage!!')
+      console.log(chalk.red.bold('Insufficient Arguments. See Usage!!'))
     }
     break
   case commands.START:
-    run(`${getBin('rollup')} -wc`, 'rollup.config.js')
+    run(`${paths.bin('rollup')} -wc`, 'rollup.config.js')
     break
   case commands.BUILD:
     del('dist').then(_ => {
-      run(`${getBin('rollup')} -c`, 'rollup.config.js')
+      run(`${paths.bin('rollup')} -c`, 'rollup.config.js')
     })
     break
   case commands.TEST:
-    run(`${getBin('jest')} --watch`, 'jest.config.js')
+    run(`${paths.bin('jest')} --watch`, 'jest.config.js')
     break
   case commands.COVERAGE:
-    run(`${getBin('jest')} --coverage`, 'jest.config.js')
+    run(`${paths.bin('jest')} --coverage`, 'jest.config.js')
     break
   case commands.SETUP:
     run('git clean -fdX')
@@ -67,7 +67,7 @@ switch (command) {
     run('tslib docs')
     break
   case commands.DOCS:
-    run(`${getBin('typedoc')} --options ${getRoot('typedoc.js')}`)
+    run(`${paths.bin('typedoc')} --options ${paths.cli('typedoc.js')}`)
     break
   case commands.PUB:
     run('tslib setup')

@@ -11,7 +11,7 @@ const config = options => ({
   external: options.external || [],
   plugins: [
     $.multiEntry(),
-    $.minifyHtmlLiterals.default(),
+    // $.minifyHtmlLiterals.default(),
     $.replace({ 'process.env.NODE_ENV': isDev ? JSON.stringify('DEVELOPMENT') : JSON.stringify('PRODUCTION') }),
     $.html({ collapseWhitespace: true, quoteCharacter: "'", removeComments: true }),
     $.json({ preferConst: true }),

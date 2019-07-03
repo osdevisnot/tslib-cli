@@ -4,7 +4,7 @@
   "description": "Maximum Overkill for Typescript Library Authors",
   "repository": "osdevisnot/tslib-cli",
   "license": "MIT",
-  "main": "index.js",
+  "main": "rollup.config.js",
   "bin": {
     "tslib": "cli.js"
   },
