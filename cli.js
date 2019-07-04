@@ -50,11 +50,13 @@ switch (command) {
     break
   case commands.SETUP:
     run('git clean -fdX')
-    del('yarn.lock')
-    del('package-lock.json')
-    run('yarn')
-    run('tslib build')
-    run('tslib coverage')
+    del('package-lock.json').then((_) => {
+      del('yarn.lock').then((_) => {
+        run('yarn')
+        run('tslib build')
+        run('tslib coverage')
+      })
+    })
     break
   case commands.DOCS:
     run(`${paths.bin('typedoc')} --options ${paths.cli('typedoc.js')}`)
