@@ -64,7 +64,7 @@ switch (command) {
     run('yarn')
     run('tslib build')
     run('tslib coverage')
-    run('tslib docs')
+    // run('tslib docs')
     break
   case commands.DOCS:
     run(`${paths.bin('typedoc')} --options ${paths.cli('typedoc.js')}`)
