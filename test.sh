@@ -4,14 +4,14 @@ cd ~/temp
 
 rm -rf my-lib
 
-tslib init my-lib --verbose
+tslib init my-lib
 
 cd my-lib
 
-tslib build --verbose
+tslib build
 
-tslib coverage --verbose
+tslib coverage
 
-tslib setup --verbose
+tslib setup
 
 git status

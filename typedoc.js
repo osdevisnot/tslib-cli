@@ -15,7 +15,6 @@ module.exports = {
   includeDeclarations: false,
   hideGenerator: true,
   excludePrivate: true,
-  // excludeNotExported: true,
   excludeExternals: true,
-  exclude: ['**/test/**/*', '**/dist/**/*', '**/public/**/*']
+  exclude: ['**/test/**/*', '**/dist/**/*', '**/public/**/*'],
 }

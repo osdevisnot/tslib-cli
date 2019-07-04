@@ -4,40 +4,31 @@ const path = require('path')
 const getopts = require('getopts')
 const chalk = require('chalk')
 const del = require('del')
+const { run, paths, commands } = require('./utils')
 
 const {
   _: [command, ...args],
   ...options
 } = getopts(process.argv.slice(2), {
   default: {
-    cache: true,
-    verbose: false,
-    force: false,
-    template: 'osdevisnot/starter-typescript-library'
+    template: 'osdevisnot/starter-typescript-library',
   },
   alias: {
-    t: 'template'
-  }
+    t: 'template',
+  },
 })
-
-const { debug, run, paths, commands } = require('./utils')(options)
-
-debug('TCL: Firing command', command)
-debug('TCL: with args', args)
-debug('TCL: and options', JSON.stringify(options))
 
 let cmd = []
 
 switch (command) {
   case commands.INIT:
     let [dest] = args
-    debug('TCL: dest', dest)
     if (dest) {
       const gittar = require('gittar')
-      gittar.fetch('github:osdevisnot/starter-typescript-library').then(res =>
+      gittar.fetch('github:osdevisnot/starter-typescript-library').then((res) =>
         gittar.extract(res, dest).then(() => {
           run('node setup.js', path.join(dest, 'setup.js'), { cwd: dest })
-        })
+        }),
       )
     } else {
       console.log(chalk.red.bold('Insufficient Arguments. See Usage!!'))
@@ -47,7 +38,7 @@ switch (command) {
     run(`${paths.bin('rollup')} -wc`, 'rollup.config.js')
     break
   case commands.BUILD:
-    del('dist').then(_ => {
+    del('dist').then((_) => {
       run(`${paths.bin('rollup')} -c`, 'rollup.config.js')
     })
     break
@@ -64,7 +55,6 @@ switch (command) {
     run('yarn')
     run('tslib build')
     run('tslib coverage')
-    // run('tslib docs')
     break
   case commands.DOCS:
     run(`${paths.bin('typedoc')} --options ${paths.cli('typedoc.js')}`)
