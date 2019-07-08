@@ -34,7 +34,7 @@
   "prettier": "@osdevisnot/prettier-config",
   "dependencies": {
     "@types/jest": "24.0.15",
-    "@types/node": "12.0.12",
+    "@types/node": "12.6.0",
     "del": "5.0.0",
     "getopts": "2.2.5",
     "gittar": "0.1.1",
