@@ -2,6 +2,8 @@ const path = require('path')
 
 const $ = require('rollup-load-plugins')({ cwd: path.join(__dirname) })
 
+const linaria = require('linaria/rollup')
+
 const isDev = !!process.env.ROLLUP_WATCH
 const tsconfig = path.join(process.cwd(), 'tsconfig.json')
 
@@ -22,6 +24,8 @@ const config = (options) => ({
       typescript: require('typescript'),
     }),
     $.commonjs(),
+    options.linaria && linaria({ sourceMap: isDev }),
+    options.linaria && $.cssOnly({ output: options.linaria }),
     isDev && options.devServer && $.serve({ contentBase: ['public', 'dist'], historyApiFallback: true, port: 1234 }),
     isDev && options.devServer && $.livereload('dist'),
     !isDev &&
