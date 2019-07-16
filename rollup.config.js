@@ -6,15 +6,15 @@ const isDev = !!process.env.ROLLUP_WATCH
 const tsconfig = paths.app('tsconfig.json')
 const pkg = require(paths.app('package.json'))
 
-let external = []
+let external = Object.keys({
+  ...(pkg.dependencies || {}),
+  ...(pkg.devDependencies || {}),
+  ...(pkg.peerDependencies || {}),
+})
 
 if (isDev) {
   pkg.source = 'public/index.tsx'
-  external = Object.keys({
-    ...(pkg.dependencies || {}),
-    ...(pkg.devDependencies || {}),
-    ...(pkg.peerDependencies || {}),
-  })
+  external = []
 }
 
 console.log('pkg now : ', pkg.source, pkg.module)
