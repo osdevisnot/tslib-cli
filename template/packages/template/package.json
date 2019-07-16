@@ -1,0 +1,28 @@
+{
+  "name": "@template/template",
+  "version": "0.0.0",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/template.js",
+  "module": "dist/template.mjs",
+  "source": "src/template.tsx",
+  "typings": "dist/template.d.ts",
+  "scripts": {
+    "build": "tslib build",
+    "coverage": "tslib coverage",
+    "docs": "tslib docs",
+    "setup": "tslib setup",
+    "start": "tslib start",
+    "test": "tslib test"
+  },
+  "dependencies": {},
+  "devDependencies": {
+    "@types/jest": "^24.0.15",
+    "@types/node": "^12.6.3"
+  },
+  "publishConfig": {
+    "access": "public"
+  }
+}

@@ -3,8 +3,8 @@ cache:
   directories:
     - node_modules
 node_js:
-  - 10
-  - 11
+  - "10"
+  - "12"
 before_script:
   - git config --global core.autocrlf false
   - git config --global user.email "your@gmail.com"

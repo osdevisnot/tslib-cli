@@ -1,35 +1,42 @@
-const path = require('path')
-
-const $ = require('rollup-load-plugins')({ cwd: path.join(__dirname) })
-
-const linaria = require('linaria/rollup')
+const { paths } = require('./utils')
+const $ = require('rollup-load-plugins')({ cwd: paths.cli() })
 
 const isDev = !!process.env.ROLLUP_WATCH
-const tsconfig = path.join(process.cwd(), 'tsconfig.json')
 
-const config = (options) => ({
-  input: options.input,
-  output: options.output,
-  external: options.external || [],
+const tsconfig = paths.app('tsconfig.json')
+const pkg = require(paths.app('package.json'))
+
+let external = []
+
+if (isDev) {
+  pkg.source = 'public/index.tsx'
+  external = Object.keys({
+    ...(pkg.dependencies || {}),
+    ...(pkg.devDependencies || {}),
+    ...(pkg.peerDependencies || {}),
+  })
+}
+
+console.log('pkg now : ', pkg.source, pkg.module)
+
+export default {
+  input: pkg.source,
+  output: [{ format: 'es', file: pkg.module }, { format: 'cjs', file: pkg.main }],
+  external,
   plugins: [
-    $.multiEntry(),
     $.replace({ 'process.env.NODE_ENV': isDev ? JSON.stringify('DEVELOPMENT') : JSON.stringify('PRODUCTION') }),
-    $.html({ collapseWhitespace: true, quoteCharacter: "'", removeComments: true }),
     $.json({ preferConst: true }),
     $.nodeResolve(),
     $.typescript2({
       useTsconfigDeclarationDir: true,
       tsconfig,
-      tsconfigOverride: options.tsconfigOverride,
+      tsconfigOverride: { exclude: ['node_modules', 'dist', 'public', 'test'] },
       typescript: require('typescript'),
     }),
     $.commonjs(),
-    options.linaria && linaria({ sourceMap: isDev }),
-    options.linaria && $.cssOnly({ output: options.linaria }),
-    isDev && options.devServer && $.serve({ contentBase: ['public', 'dist'], historyApiFallback: true, port: 1234 }),
-    isDev && options.devServer && $.livereload('dist'),
+    isDev && $.serve({ contentBase: ['dist', 'public'], historyApiFallback: true, port: 1234 }),
+    isDev && $.livereload('dist'),
     !isDev &&
-      options.minify &&
       $.terser.terser({
         ecma: 6,
         mangle: {
@@ -38,10 +45,4 @@ const config = (options) => ({
       }),
     !isDev && $.filesize({ showBrotliSize: true }),
   ].filter(Boolean),
-})
-
-module.exports = function(bundles) {
-  const dist = []
-  bundles.forEach((bundle) => dist.push(config(bundle)))
-  return dist
 }

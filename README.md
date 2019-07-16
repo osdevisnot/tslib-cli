@@ -9,7 +9,7 @@ An opinionated wrapper around `typescript`, `rollup`, `jest` and `typedoc`
 
 ## Features
 
-- [x] Scaffold a new library based on [starter-typescript-library](https://github.com/osdevisnot/starter-typescript-library)
+- [x] Scaffold a new library.
 - [x] Provides a live-reloading developement server
 - [x] Create production ready bundles
 - [x] Test Infrastructure based on `jest`
@@ -79,6 +79,6 @@ To clean CWD:
 tslib setup
 ```
 
-
 ## License
+
 [![FOSSA Status](https://app.fossa.io/api/projects/git%2Bgithub.com%2Fosdevisnot%2Ftslib-cli.svg?type=large)](https://app.fossa.io/projects/git%2Bgithub.com%2Fosdevisnot%2Ftslib-cli?ref=badge_large)
