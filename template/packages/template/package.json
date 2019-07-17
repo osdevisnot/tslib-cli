@@ -13,7 +13,6 @@
     "build": "tslib build",
     "coverage": "tslib coverage",
     "docs": "tslib docs",
-    "setup": "tslib setup",
     "start": "tslib start",
     "test": "tslib test"
   },

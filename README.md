@@ -13,13 +13,10 @@ An opinionated wrapper around `typescript`, `rollup`, `jest` and `typedoc`
 - [x] Provides a live-reloading developement server
 - [x] Create production ready bundles
 - [x] Test Infrastructure based on `jest`
+- [x] Support Monorepo Infra (based on `lerna`)
 - [x] API Documentation in MD (based on `typedoc`)
 - [x] Provide a Publish Workflow
-
-### TODOS
-
-- [ ] Support Javascript only projects
-- [ ] Reduce config files (0cJS)
+- [x] Minimal Config Files (only `tsconfig.json` and `package.json` needed)
 
 ## Usage
 

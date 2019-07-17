@@ -34,8 +34,8 @@
   },
   "prettier": "@osdevisnot/prettier",
   "dependencies": {
-    "@types/jest": "24.0.15",
-    "@types/node": "12.6.6",
+    "@types/jest": "latest",
+    "@types/node": "latest",
     "core-js": "3.1.4",
     "del": "5.0.0",
     "jest": "24.8.0",
