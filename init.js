@@ -12,7 +12,7 @@ module.exports = (name) => {
       src = paths.cli('template/packages/template')
       dest = paths.app('packages', name)
       ncp(src, dest, { ...transform(name) }, () => {
-        rename(`packages/${name}/src/index.tsx`, `packages/${name}/src/${name}.tsx`)
+        rename(`packages/${name}/src/template.tsx`, `packages/${name}/src/${name}.tsx`)
         rename(`packages/${name}/test/index.test.tsx`, `packages/${name}/test/${name}.test.tsx`)
         run(['yarn'])
         console.log('Done !!')
@@ -20,7 +20,7 @@ module.exports = (name) => {
     } else {
       ncp(src, dest, { ...transform(name) }, () => {
         rename(`${name}/packages/template`, `${name}/packages/${name}`)
-        rename(`${name}/packages/${name}/src/index.tsx`, `${name}/packages/${name}/src/${name}.tsx`)
+        rename(`${name}/packages/${name}/src/template.tsx`, `${name}/packages/${name}/src/${name}.tsx`)
         rename(`${name}/packages/${name}/test/index.test.tsx`, `${name}/packages/${name}/test/${name}.test.tsx`)
         run(['yarn', 'git init', 'git add .', 'git commit -am "fist commit"'], { cwd: dest })
       })

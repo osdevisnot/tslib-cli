@@ -14,7 +14,7 @@ switch (command) {
     run([`${paths.bin('rollup')} -wc ${paths.cli('rollup.config.js')}`])
     break
   case commands.BUILD:
-    del('dist').then((_) => {
+    del('dist/**').then((_) => {
       run([`${paths.bin('rollup')} -c ${paths.cli('rollup.config.js')}`])
     })
     break

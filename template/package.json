@@ -9,6 +9,8 @@
     "build": "lerna exec -- tslib build",
     "install": "yarn run bootstrap",
     "setup": "yarn",
+    "sort": "sort-package-json",
+    "postsort": "lerna exec -- sort-package-json",
     "test": "lerna exec -- tslib coverage"
   },
   "prettier": "@osdevisnot/prettier",

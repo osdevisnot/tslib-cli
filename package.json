@@ -9,7 +9,7 @@
     "tslib": "cli.js"
   },
   "scripts": {
-    "preinstall": "sort-package-json",
+    "postinstall": "sort-package-json",
     "prepub": "npm run setup",
     "pub": "npm version patch && npm publish",
     "postpub": "git push --follow-tags",

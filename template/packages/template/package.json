@@ -6,8 +6,8 @@
     "dist"
   ],
   "main": "dist/template.js",
-  "module": "dist/template.mjs",
-  "source": "src/template.tsx",
+  "module": "dist/template.module.js",
+  "source": "src/index.tsx",
   "typings": "dist/template.d.ts",
   "scripts": {
     "build": "tslib build",

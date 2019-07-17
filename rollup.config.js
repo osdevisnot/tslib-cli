@@ -7,7 +7,6 @@ const tsconfig = paths.app('tsconfig.json')
 const pkg = require(paths.app('package.json'))
 
 let external = Object.keys({
-  ...(pkg.dependencies || {}),
   ...(pkg.devDependencies || {}),
   ...(pkg.peerDependencies || {}),
 })
@@ -17,32 +16,51 @@ if (isDev) {
   external = []
 }
 
-console.log('pkg now : ', pkg.source, pkg.module)
-
-export default {
-  input: pkg.source,
-  output: [{ format: 'es', file: pkg.module }, { format: 'cjs', file: pkg.main }],
-  external,
-  plugins: [
+const plugins = (options) => {
+  return [
     $.replace({ 'process.env.NODE_ENV': isDev ? JSON.stringify('DEVELOPMENT') : JSON.stringify('PRODUCTION') }),
     $.json({ preferConst: true }),
-    $.nodeResolve(),
+    $.nodeResolve({ mainFields: ['module', 'main'] }),
     $.typescript2({
       useTsconfigDeclarationDir: true,
       tsconfig,
-      tsconfigOverride: { exclude: ['node_modules', 'dist', 'public', 'test'] },
+      tsconfigOverride: { exclude: ['dist', 'public', 'test'] },
       typescript: require('typescript'),
     }),
     $.commonjs(),
     isDev && $.serve({ contentBase: ['dist', 'public'], historyApiFallback: true, port: 1234 }),
     isDev && $.livereload('dist'),
     !isDev &&
+      options.minify &&
       $.terser.terser({
         ecma: 6,
         mangle: {
           properties: { regex: new RegExp('^_') },
         },
       }),
-    !isDev && $.filesize({ showBrotliSize: true }),
-  ].filter(Boolean),
+    !isDev && options.sizes && $.filesize({ showBrotliSize: true }),
+  ].filter(Boolean)
 }
+
+let config = [
+  {
+    input: pkg.source,
+    output: { format: 'cjs', file: pkg.main },
+    external,
+    plugins: plugins({}),
+  },
+  {
+    input: pkg.source,
+    output: { format: 'es', file: pkg.module },
+    external,
+    plugins: plugins({}),
+  },
+  {
+    input: pkg.source,
+    output: { format: 'es', file: pkg.module.replace(/\.module.js/, '.module.min.js') },
+    external,
+    plugins: plugins({ minify: true, sizes: true }),
+  },
+]
+
+export default config
