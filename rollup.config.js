@@ -42,25 +42,38 @@ const plugins = (options) => {
   ].filter(Boolean)
 }
 
-let config = [
-  {
-    input: pkg.source,
-    output: { format: 'cjs', file: pkg.main },
-    external,
-    plugins: plugins({}),
-  },
-  {
+let config
+
+if (isDev) {
+  config = {
     input: pkg.source,
     output: { format: 'es', file: pkg.module },
     external,
-    plugins: plugins({}),
-  },
-  {
-    input: pkg.source,
-    output: { format: 'es', file: pkg.module.replace(/\.module.js/, '.module.min.js') },
-    external,
-    plugins: plugins({ minify: true, sizes: true }),
-  },
-]
+    plugins: plugins({ sizes: true }),
+  }
+} else {
+  config = [
+    {
+      input: pkg.source,
+      output: { format: 'cjs', file: pkg.main },
+      external,
+      plugins: plugins({}),
+    },
+    {
+      input: pkg.source,
+      output: { format: 'es', file: pkg.module },
+      external,
+      plugins: plugins({}),
+    },
+    {
+      input: pkg.source,
+      output: { format: 'es', file: pkg.module.replace(/\.module.js/, '.module.min.js') },
+      external,
+      plugins: plugins({ minify: true, sizes: true }),
+    },
+  ]
+}
+
+console.log(config)
 
 export default config
