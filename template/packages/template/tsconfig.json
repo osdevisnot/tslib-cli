@@ -1,9 +1,11 @@
 {
   "compilerOptions": {
+    "allowJs": true, // Allow JavaScript files to be compiled.
     "alwaysStrict": true, // Parse in strict mode and emit "use strict" for each source file.
     "declaration": true, // Generates corresponding '.d.ts' file.
     "declarationDir": "dist", // write declartion files to this directory
     "emitDecoratorMetadata": true, // Enables experimental support for emitting type metadata for decorators.
+    "esModuleInterop": true, // Emit __importStar and __importDefault helpers for runtime babel ecosystem compatibility and enable --allowSyntheticDefaultImports for typesystem compatibility.
     "experimentalDecorators": true, // Enables experimental support for ES7 decorators.
     "jsx": "react", // Enables JSX processing
     "jsxFactory": "h", // change this to `React.createElement` when using React.
