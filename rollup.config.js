@@ -74,6 +74,4 @@ if (isDev) {
   ]
 }
 
-console.log(config)
-
 export default config
