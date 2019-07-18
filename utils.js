@@ -19,6 +19,7 @@ const commands = {
   DOCS: 'docs',
   PUB: 'pub',
   SETUP: 'setup',
+  DEPLOY: 'deploy',
 }
 
 const run = (commands, options) => commands.forEach((cmd) => sync(cmd, { stdio: 'inherit', ...options }))
@@ -29,10 +30,13 @@ const transform = (replacement) => ({
 
 const rename = (src, dest) => fs.renameSync(paths.app(src), paths.app(dest))
 
+const copy = (src, dest) => fs.copyFileSync(paths.app(src), paths.app(dest))
+
 module.exports = {
   paths,
   run,
   commands,
   transform,
   rename,
+  copy,
 }

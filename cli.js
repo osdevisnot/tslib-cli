@@ -2,7 +2,7 @@
 
 const path = require('path')
 const del = require('del')
-const { run, paths, commands } = require('./utils')
+const { run, paths, commands, copy } = require('./utils')
 
 const command = process.argv[2]
 
@@ -17,6 +17,15 @@ switch (command) {
     del('dist/**').then((_) => {
       run([`${paths.bin('rollup')} -c ${paths.cli('rollup.config.js')}`])
     })
+    break
+  case commands.DEPLOY:
+    process.env.ROLLUP_DEPLOY = true
+    del('dist/**')
+      .then((_) => {
+        run([`${paths.bin('rollup')} -c ${paths.cli('rollup.config.js')}`])
+      })
+      .then((_) => ['index.html', 'favicon.ico'].forEach((file) => copy(`public/${file}`, `dist/${file}`)))
+      .then((_) => run([`surge`], { cwd: paths.app('dist') }))
     break
   case commands.TEST:
     run([`${paths.bin('jest')} --config ${paths.cli('jest.config.js')} --watch`])

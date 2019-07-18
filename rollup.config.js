@@ -2,6 +2,7 @@ const { paths } = require('./utils')
 const $ = require('rollup-load-plugins')({ cwd: paths.cli() })
 
 const isDev = !!process.env.ROLLUP_WATCH
+const isDeploy = !!process.env.ROLLUP_DEPLOY
 
 const tsconfig = paths.app('tsconfig.json')
 const pkg = require(paths.app('package.json'))
@@ -11,7 +12,7 @@ let external = Object.keys({
   ...(pkg.peerDependencies || {}),
 })
 
-if (isDev) {
+if (isDev || isDeploy) {
   pkg.source = 'public/index.tsx'
   external = []
 }
@@ -24,14 +25,14 @@ const plugins = (options) => {
     $.typescript2({
       useTsconfigDeclarationDir: true,
       tsconfig,
-      tsconfigOverride: { exclude: ['dist', 'public', 'test'] },
+      tsconfigOverride: { exclude: ['dist', 'public', 'test'], compilerOptions: { declaration: !isDev && !isDeploy } },
       typescript: require('typescript'),
     }),
     $.commonjs(),
     isDev && $.serve({ contentBase: ['dist', 'public'], historyApiFallback: true, port: 7000 }),
     isDev && $.livereload('dist'),
     !isDev &&
-      options.minify &&
+      (options.minify || isDeploy) &&
       $.terser.terser({
         ecma: 6,
         mangle: {
@@ -44,7 +45,7 @@ const plugins = (options) => {
 
 let config
 
-if (isDev) {
+if (isDev || isDeploy) {
   config = {
     input: pkg.source,
     output: { format: 'es', file: pkg.module },
