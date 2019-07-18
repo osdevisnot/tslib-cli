@@ -28,7 +28,7 @@ const plugins = (options) => {
       typescript: require('typescript'),
     }),
     $.commonjs(),
-    isDev && $.serve({ contentBase: ['dist', 'public'], historyApiFallback: true, port: 1234 }),
+    isDev && $.serve({ contentBase: ['dist', 'public'], historyApiFallback: true, port: 7000 }),
     isDev && $.livereload('dist'),
     !isDev &&
       options.minify &&

@@ -23,6 +23,10 @@ switch (command) {
     break
   case commands.COVERAGE:
     run([`${paths.bin('jest')} --config ${paths.cli('jest.config.js')} --coverage`])
+    if (process.argv[3] === 'serve') {
+      const serve = require('rollup-plugin-serve')
+      serve({ contentBase: ['coverage/lcov-report'], historyApiFallback: true, port: 5000 }).generateBundle()
+    }
     break
   case commands.SETUP:
     run(['git clean -fdX', 'yarn'])
