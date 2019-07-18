@@ -7,17 +7,18 @@
     "bootstrap": "lerna bootstrap",
     "postbootstrap": "yarn run build",
     "build": "lerna exec -- tslib build",
+    "coverage": "tslib coverage",
     "install": "yarn run bootstrap",
-    "setup": "yarn",
+    "setup": "tslib setup",
     "sort": "sort-package-json",
     "postsort": "lerna exec -- sort-package-json",
-    "test": "lerna exec -- tslib coverage"
+    "test": "tslib test"
   },
   "prettier": "@osdevisnot/prettier",
   "devDependencies": {
     "@osdevisnot/prettier": "^0.1.0",
-    "@types/jest": "^24.0.15",
-    "@types/node": "^12.6.3",
+    "@types/jest": "latest",
+    "@types/node": "latest",
     "lerna": "^3.15.0"
   }
 }

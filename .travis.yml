@@ -9,4 +9,4 @@ before_script:
   - git config --global core.autocrlf false
   - git config --global user.email "your@gmail.com"
   - git config --global user.name "your name"
-script: npm install --global sort-package-json && npm link && mkdir stash && cd stash && tslib init mylib && cd mylib/packages && tslib init mylib && cd .. && yarn && yarn build && yarn test
+script: npm install --global sort-package-json && npm link && mkdir stash && cd stash && tslib init mylib && tslib init mylib && yarn && yarn build && yarn test

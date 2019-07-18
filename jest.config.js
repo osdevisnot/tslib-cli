@@ -5,7 +5,7 @@ module.exports = {
   rootDir: paths.app('/'),
   clearMocks: true, // Automatically clear mock calls and instances between every test
   coverageDirectory: 'coverage', // The directory where Jest should output its coverage files
-  coveragePathIgnorePatterns: ['/node_modules/', '/test/'], // An array of regexp pattern strings used to skip coverage collection
+  coveragePathIgnorePatterns: ['/node_modules/', '/test/', '/dist/'], // An array of regexp pattern strings used to skip coverage collection
   coverageReporters: ['text', 'lcov'], // A list of reporter names that Jest uses when writing coverage reports
   testEnvironment: 'jsdom', // The test environment that will be used for testing
   testMatch: ['**/__tests__/**/*.ts?(x)', '**/?(*.)+(spec|test).ts?(x)'], // The glob patterns Jest uses to detect test files
