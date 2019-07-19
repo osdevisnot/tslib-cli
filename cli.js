@@ -2,7 +2,7 @@
 
 const path = require('path')
 const del = require('del')
-const { run, paths, commands, copy } = require('./utils')
+const { run, paths, commands, copy, serve } = require('./utils')
 
 const command = process.argv[2]
 
@@ -32,16 +32,20 @@ switch (command) {
     break
   case commands.COVERAGE:
     run([`${paths.bin('jest')} --config ${paths.cli('jest.config.js')} --coverage`])
-    if (process.argv[3] === 'serve') {
-      const serve = require('rollup-plugin-serve')
-      serve({ contentBase: ['coverage/lcov-report'], historyApiFallback: true, port: 5000 }).generateBundle()
-    }
+    serve('coverage/lcov-report')
     break
   case commands.SETUP:
     run(['git clean -fdX', 'yarn'])
     break
   case commands.DOCS:
-    run(`${paths.bin('typedoc')} --options ${paths.cli('typedoc.js')}`)
+    del(paths.app('docs')).then((_) => {
+      run([
+        `${paths.bin('typedoc')} --options ${paths.cli('typedoc.js')} --tsconfig ${paths.app(
+          'tsconfig.json',
+        )} --excludePrivate`,
+      ])
+      serve('docs')
+    })
     break
   case commands.PUB:
     run('tslib setup')

@@ -32,6 +32,13 @@ const rename = (src, dest) => fs.renameSync(paths.app(src), paths.app(dest))
 
 const copy = (src, dest) => fs.copyFileSync(paths.app(src), paths.app(dest))
 
+const serve = (dir, port = 5000) => {
+  if (process.argv[3] === 'serve') {
+    const server = require('rollup-plugin-serve')
+    server({ contentBase: [dir], historyApiFallback: true, port }).generateBundle()
+  }
+}
+
 module.exports = {
   paths,
   run,
@@ -39,4 +46,5 @@ module.exports = {
   transform,
   rename,
   copy,
+  serve,
 }

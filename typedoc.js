@@ -1,12 +1,13 @@
-const path = require('path')
-const pkg = require(path.join(process.cwd(), 'package.json'))
+const { paths } = require('./utils')
+const pkg = require(paths.app('package.json'))
 
 module.exports = {
-  theme: 'markdown',
+  // theme: paths.cli('node_modules', 'typedoc-plugin-markdown', 'dist', ''),
+  theme: 'minimal',
   suppressImplicitAnyIndexErrors: 'true',
   suppressExcessPropertyErrors: 'true',
   stripInternal: 'true',
-  readme: 'none',
+  readme: paths.app('README.md'),
   out: 'docs',
   name: pkg.name,
   moduleResolution: 'node',
