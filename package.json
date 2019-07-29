@@ -65,7 +65,7 @@
   },
   "devDependencies": {
     "@osdevisnot/prettier": "0.1.0",
-    "husky": "3.0.0",
+    "husky": "3.0.2",
     "lint-staged": "9.2.0",
     "sort-package-json": "1.22.1"
   }
