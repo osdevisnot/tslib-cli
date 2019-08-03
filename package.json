@@ -43,7 +43,7 @@
     "replacestream": "4.0.3",
     "rollup": "1.17.0",
     "rollup-load-plugins": "0.4.0",
-    "rollup-plugin-commonjs": "10.0.1",
+    "rollup-plugin-commonjs": "10.0.2",
     "rollup-plugin-filesize": "6.1.1",
     "rollup-plugin-json": "4.0.0",
     "rollup-plugin-livereload": "1.0.1",
