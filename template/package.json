@@ -1,0 +1,25 @@
+{
+  "name": "template",
+  "version": "0.1.0",
+  "license": "MIT",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/template.main.js",
+  "module": "dist/template.module.js",
+  "source": "src/template.tsx",
+  "browser": "dist/template.js",
+  "types": "dist/types/template.d.ts",
+  "scripts": {
+    "build": "tslib build",
+    "coverage": "tslib coverage",
+    "format": "tslib format",
+    "lint": "tslib lint",
+    "prepare": "tslib build",
+    "start": "tslib start",
+    "test": "tslib test",
+    "watch": "tslib watch"
+  },
+  "prettier": "tslib-cli",
+  "devDependencies": {}
+}
