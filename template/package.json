@@ -16,6 +16,8 @@
     "format": "tslib format",
     "lint": "tslib lint",
     "prepare": "tslib build",
+    "pub": "tslib pub",
+    "setup": "tslib setup",
     "start": "tslib start",
     "test": "tslib test",
     "watch": "tslib watch"
