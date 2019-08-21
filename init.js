@@ -27,20 +27,20 @@ module.exports = () => {
 
       log('Done !! Now Installing Dependencies...');
       if (process.argv[4] === 'link') {
-        run(`yarn add ${paths.cli('tslib-cli-' + pkg.version + '.tgz')}`, {
-          cwd: paths.app(dest),
-        });
+        run(
+          `yarn add @types/jest ${paths.cli(
+            'tslib-cli-' + pkg.version + '.tgz'
+          )}`,
+          {
+            cwd: paths.app(dest),
+          }
+        );
       } else {
-        run('yarn add tslib-cli', { cwd: paths.app(dest) });
+        run('yarn add tslib-cli @types/jest', { cwd: paths.app(dest) });
       }
-      [
-        'yarn add @types/jest',
-        'git init',
-        'git add .',
-        'git commit -am "Unleash the Kraken"',
-      ].map(cmd => {
-        run(cmd, { cwd: paths.app(dest) });
-      });
+      ['git init', 'git add .', 'git commit -am "Unleash the Kraken"'].map(
+        cmd => run(cmd, { cwd: paths.app(dest) })
+      );
     }
   );
 };

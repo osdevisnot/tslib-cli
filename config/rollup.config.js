@@ -63,7 +63,12 @@ const config = options => ({
 
 const bundles =
   command === 'start'
-    ? [{ input: '', output: '' }]
+    ? [
+        {
+          input: 'public/index.tsx',
+          output: { file: 'dist/index.js', format: 'es' },
+        },
+      ]
     : [
         pkg.browser && {
           input: pkg.source,
