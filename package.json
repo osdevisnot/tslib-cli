@@ -11,6 +11,9 @@
   },
   "scripts": {
     "prepare": "npm run sort",
+    "prepub": "npm run setup",
+    "pub": "npm version patch",
+    "postpub": "npm publish",
     "presetup": "git clean -fdX",
     "setup": "npm link",
     "postsetup": "npm pack",

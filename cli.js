@@ -6,7 +6,7 @@ const { paths, run, cpy, clean, error, log } = require('./utils');
 
 process.env.COMMAND = command;
 
-log(`Woking on : ` + command);
+log(`woking on '${command}'`);
 
 switch (command) {
   case 'init':
