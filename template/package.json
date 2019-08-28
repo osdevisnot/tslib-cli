@@ -6,8 +6,8 @@
   "files": [
     "dist"
   ],
-  "main": "dist/template.main.js",
-  "module": "dist/template.module.js",
+  "main": "dist/template.cjs.js",
+  "module": "dist/template.esm.js",
   "source": "src/template.tsx",
   "browser": "dist/template.js",
   "types": "dist/types/template.d.ts",
