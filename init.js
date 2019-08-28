@@ -28,7 +28,7 @@ module.exports = () => {
       log('Done !! Now Installing Dependencies...');
       if (process.argv[4] === 'link') {
         run(
-          `yarn add @types/jest ${paths.cli(
+          `yarn add --dev @types/jest ${paths.cli(
             'tslib-cli-' + pkg.version + '.tgz'
           )}`,
           {
@@ -36,7 +36,7 @@ module.exports = () => {
           }
         );
       } else {
-        run('yarn add tslib-cli @types/jest', { cwd: paths.app(dest) });
+        run('yarn add --dev tslib-cli @types/jest', { cwd: paths.app(dest) });
       }
       ['git init', 'git add .', 'git commit -am "Unleash the Kraken"'].map(
         cmd => run(cmd, { cwd: paths.app(dest) })
