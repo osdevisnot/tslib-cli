@@ -24,13 +24,13 @@
   "dependencies": {
     "chalk": "^2.4.2",
     "coveralls": "^3.0.6",
-    "del": "^5.0.0",
+    "del": "^5.1.0",
     "jest": "^24.9.0",
     "ncp": "2.0.0",
     "prettier": "^1.18.2",
     "replacestream": "4.0.3",
-    "rollup": "^1.19.4",
-    "rollup-plugin-commonjs": "^10.0.2",
+    "rollup": "^1.20.3",
+    "rollup-plugin-commonjs": "^10.1.0",
     "rollup-plugin-filesize": "^6.2.0",
     "rollup-plugin-json": "^4.0.0",
     "rollup-plugin-livereload": "^1.0.1",
@@ -38,14 +38,14 @@
     "rollup-plugin-replace": "^2.2.0",
     "rollup-plugin-serve": "^1.0.1",
     "rollup-plugin-terser": "^5.1.1",
-    "rollup-plugin-typescript2": "^0.22.1",
+    "rollup-plugin-typescript2": "^0.24.0",
     "ts-jest": "^24.0.2",
-    "tslint": "^5.18.0",
+    "tslint": "^5.19.0",
     "tslint-config-prettier": "^1.18.0",
-    "typescript": "^3.5.3"
+    "typescript": "^3.6.2"
   },
   "devDependencies": {
     "@types/jest": "^24.0.18",
-    "@types/node": "^12.7.2"
+    "@types/node": "^12.7.4"
   }
 }
