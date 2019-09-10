@@ -1,5 +1,9 @@
 #!/usr/bin/env bash
 
+npm cache clean --force
+
+npm run setup
+
 yarn cache clean
 
 cd ~/temp

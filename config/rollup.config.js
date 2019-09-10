@@ -1,7 +1,7 @@
 const path = require('path');
 const json = require('rollup-plugin-json');
 const nodeResolve = require('rollup-plugin-node-resolve');
-const typescript = require('rollup-plugin-typescript2');
+const typescript = require('rollup-plugin-typescript');
 const commonjs = require('rollup-plugin-commonjs');
 const serve = require('rollup-plugin-serve');
 const livereload = require('rollup-plugin-livereload');
@@ -25,11 +25,8 @@ const config = options => ({
       mainFields: ['module', 'main'],
     }),
     typescript({
-      useTsconfigDeclarationDir: true,
-      tsconfigOverride: {
-        include: [command === 'deploy' ? 'public' : 'src'],
-        compilerOptions: { declaration: command === 'build' },
-      },
+      declaration: command === 'build',
+      include: [command === 'deploy' ? 'public' : 'src'],
       typescript: require('typescript'),
     }),
     commonjs(),
