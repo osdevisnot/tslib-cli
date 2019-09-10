@@ -24,11 +24,7 @@ const config = options => ({
     nodeResolve({
       mainFields: ['module', 'main'],
     }),
-    typescript({
-      declaration: command === 'build',
-      include: [command === 'deploy' ? 'public' : 'src'],
-      typescript: require('typescript'),
-    }),
+    typescript(),
     commonjs(),
     (command === 'start' || command === 'watch' || options.replace) &&
       replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
