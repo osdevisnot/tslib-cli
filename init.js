@@ -1,6 +1,7 @@
 const ncp = require('ncp');
 const replaceStream = require('replacestream');
 const pkg = require('./package.json');
+const fs = require('fs');
 
 const { paths, run, rename, log, info, question, yesNo } = require('./utils');
 
@@ -80,6 +81,17 @@ module.exports = () => {
           `git remote add origin https://github.com/osdevisnot/${dest}.git`,
           'git push origin master',
           `semantic-release-cli setup`,
+          'yarn add --dev cz-conventional-changelog',
+        ].map(cmd => run(cmd, { cwd: paths.app(dest) }));
+        const pkgPath = paths.app(dest, 'package.json');
+        const pk = require(pkgPath);
+        pk.config = {
+          commitizen: {
+            path: 'node_modules/cz-conventional-changelog',
+          },
+        };
+        fs.writeFileSync(pkgPath, JSON.stringify(pk, null, '  '));
+        [
           'git add .',
           'git commit -am "Setup Symantic Release"',
           'git push --set-upstream origin master',

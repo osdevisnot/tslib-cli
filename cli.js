@@ -33,8 +33,9 @@ switch (command) {
     break;
   case 'test':
     process.env.NODE_ENV = 'test';
+    const watch = process.env.CI ? '--watch' : '';
     run(
-      `${paths.bin('jest')} --config ${paths.config('jest.config.js')} --watch`
+      `${paths.bin('jest')} --config ${paths.config('jest.config.js')} ${watch}`
     );
     break;
   case 'coverage':
@@ -77,9 +78,7 @@ switch (command) {
   case 'postinstall':
     if (!exists('semantic-release-cli') || !exists('commitizen')) {
       error('tslib-cli needs semantic-release-cli & commitizen');
-      log(
-        'npm install -g semantic-release-cli commitizen cz-conventional-changelog'
-      );
+      log('npm install -g semantic-release-cli commitizen');
     }
     break;
   default:
