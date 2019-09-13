@@ -2,25 +2,36 @@ const ncp = require('ncp');
 const replaceStream = require('replacestream');
 const pkg = require('./package.json');
 
-const { paths, run, cpy, rename, clean, log } = require('./utils');
+const { paths, run, cpy, rename, clean, log, question } = require('./utils');
 
 module.exports = () => {
   const dest = process.argv[3];
+
+  const userName = question('May I have your username ?      : ');
+  const userEmail = question('And your email address please ? : ');
+  const packageName = question("What's the package name ?       : ");
+  const description = question('And package descriptions ?      : ');
+
+  const packageNameSane = packageName.split('/').pop();
+
   ncp(
     paths.cli('template'),
     paths.app(dest),
     {
       transform: (read, write) =>
         read
-          .pipe(replaceStream('template', dest))
-          .pipe(replaceStream('<version>', `${pkg.version}`))
+          .pipe(replaceStream('username', userName))
+          .pipe(replaceStream('useremail', userEmail))
+          .pipe(replaceStream('template_full', packageName))
+          .pipe(replaceStream('template', packageNameSane))
+          .pipe(replaceStream('<description>', description))
           .pipe(write),
     },
     () => {
       ['src/template.tsx', 'tests/template.test.tsx'].map(f => {
         rename(
           paths.app(dest, f),
-          paths.app(dest, f.replace('template', dest))
+          paths.app(dest, f.replace('template', packageNameSane))
         );
       });
       rename(paths.app(dest, 'gitignore'), paths.app(dest, '.gitignore'));

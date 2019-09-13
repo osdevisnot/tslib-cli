@@ -3,6 +3,7 @@ const fs = require('fs');
 const del = require('del').sync;
 const sync = require('child_process').execSync;
 const chalk = require('chalk');
+const ask = require('readline-sync');
 
 const pkg = require('./package.json');
 
@@ -23,6 +24,8 @@ const prefix = chalk.gray(`${pkg.name}@${pkg.version}: `);
 const log = msg => console.log(prefix + chalk.green.bold(msg));
 const error = msg => console.error(prefix + chalk.red.bold(msg));
 
+const question = message => ask.question(chalk.gray.bold(message));
+
 module.exports = {
   paths,
   run,
@@ -31,4 +34,5 @@ module.exports = {
   clean,
   log,
   error,
+  question,
 };

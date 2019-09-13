@@ -1,6 +1,6 @@
-# template
+# template_full
 
-> description
+> <description>
 
 ## Contributing
 
@@ -22,4 +22,4 @@ yarn setup # clean setup
 
 ## License
 
-[MIT License](https://oss.ninja/mit/osdevisnot) @ [osdevisnot](https://github.com/osdevisnot)
+[MIT License](https://oss.ninja/mit/username) @ [username](https://github.com/username)

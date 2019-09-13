@@ -21,6 +21,11 @@
     "moduleResolution": "node",
     "outDir": "dist",
     "strict": false, // enable the strict mode :)
-    "target": "esnext"
+    "target": "esnext",
+    "removeComments": true,
+    "baseUrl": ".",
+    "paths": {
+      "template_full": ["src/template.tsx"]
+    }
   }
 }
