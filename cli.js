@@ -8,6 +8,14 @@ process.env.COMMAND = command;
 
 info(`Woking on '${command}'`);
 
+const tools = {
+  jest: `${paths.bin('jest')} --config ${paths.config('jest.config.js')}`,
+  rollup: `${paths.bin('rollup')} -c ${paths.config('rollup.config.js')}`,
+  coveralls: `${paths.bin('coveralls')} < ${paths.app('coverage', 'lcov.info')}`,
+  prettier: `${paths.bin('prettier')} --write {src,tests,public}/*.*`,
+  tslint: `${paths.bin('tslint')} --fix -t codeFrame -p tsconfig.json -c ${paths.config('tslint.json')}`,
+};
+
 switch (command) {
   case 'init':
     require('./init')();
@@ -19,62 +27,38 @@ switch (command) {
   case 'build':
     process.env.NODE_ENV = 'production';
     clean('dist');
-    run(`${paths.bin('rollup')} -c ${paths.config('rollup.config.js')}`);
+    run(tools.rollup);
     break;
   case 'watch':
-    process.env.NODE_ENV = 'development';
-    clean('dist');
-    run(`${paths.bin('rollup')} -wc ${paths.config('rollup.config.js')}`);
-    break;
   case 'start':
     process.env.NODE_ENV = 'development';
     clean('dist');
-    run(`${paths.bin('rollup')} -wc ${paths.config('rollup.config.js')}`);
+    run(`${tools.rollup} -w`);
     break;
   case 'test':
     process.env.NODE_ENV = 'test';
-    console.log('TCL: process.env', process.env);
-    const watch = process.env.CI ? '--watch' : '';
-    run(
-      `${paths.bin('jest')} --config ${paths.config('jest.config.js')} ${watch}`
-    );
+    const watch = process.env.CI === 'true' ? ' --watch' : '';
+    run(`${tools.jest}${watch}`);
     break;
   case 'coverage':
     process.env.NODE_ENV = 'test';
-    run(
-      `${paths.bin('jest')} --config ${paths.config(
-        'jest.config.js'
-      )} --coverage`
-    );
+    run(`${tools.jest} --coverage`);
     break;
   case 'coveralls':
     process.env.NODE_ENV = 'test';
-    run(
-      `${paths.bin('jest')} --config ${paths.config(
-        'jest.config.js'
-      )} --coverage`
-    );
-    run(`${paths.bin('coveralls')} < ${paths.app('coverage', 'lcov.info')}`);
+    run(`${tools.jest} --coverage`);
+    run(tools.coveralls);
   case 'format':
-    run(`${paths.bin('prettier')} --write {src,tests,public}/*.*`);
+    run(tools.prettier);
     break;
   case 'lint':
-    run(
-      `${paths.bin(
-        'tslint'
-      )} --fix -t codeFrame -p tsconfig.json -c ${paths.config('tslint.json')}`
-    );
+    run(tools.tslint);
     break;
   case 'setup':
     ['git clean -fdX', 'yarn'].map(cmd => run(cmd));
     break;
   case 'pub':
-    [
-      'yarn setup',
-      'git diff --quiet',
-      'yarn publish',
-      'git push --follow-tags',
-    ].map(cmd => run(cmd));
+    ['yarn setup', 'git diff --quiet', 'yarn publish', 'git push --follow-tags'].map(cmd => run(cmd));
     break;
   case 'postinstall':
     if (!exists('semantic-release-cli') || !exists('commitizen')) {
