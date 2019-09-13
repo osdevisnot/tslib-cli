@@ -2,11 +2,11 @@
 
 const [executor, bin, command, ...args] = process.argv;
 
-const { paths, run, cpy, clean, error, log } = require('./utils');
+const { paths, run, cpy, clean, error, log, info, exists } = require('./utils');
 
 process.env.COMMAND = command;
 
-log(`woking on '${command}'`);
+info(`Woking on '${command}'`);
 
 switch (command) {
   case 'init':
@@ -73,6 +73,14 @@ switch (command) {
       'yarn publish',
       'git push --follow-tags',
     ].map(cmd => run(cmd));
+    break;
+  case 'postinstall':
+    if (!exists('semantic-release-cli') || !exists('commitizen')) {
+      error('tslib-cli needs semantic-release-cli & commitizen');
+      log(
+        'npm install -g semantic-release-cli commitizen cz-conventional-changelog'
+      );
+    }
     break;
   default:
     error('No Such Command !!');

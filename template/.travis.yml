@@ -3,9 +3,20 @@ cache:
   directories:
     - node_modules
 node_js:
-  - '10'
   - '12'
-script:
-  - npm run build
-  - npm run coverage
-  - npm run coveralls
+
+jobs:
+  include:
+    - stage: build
+      script: npm run build
+    - stage: test
+      script: npm run coverage
+    - stage: coveralls
+      script: npm run coveralls
+    - stage: release
+      node_js: lts/*
+      deploy:
+        provider: script
+        skip_cleanup: true
+        script:
+          - npx semantic-release

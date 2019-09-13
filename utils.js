@@ -4,6 +4,7 @@ const del = require('del').sync;
 const sync = require('child_process').execSync;
 const chalk = require('chalk');
 const ask = require('readline-sync');
+const { sync: exists } = require('command-exists');
 
 const pkg = require('./package.json');
 
@@ -23,8 +24,12 @@ const clean = dir => del([paths.app(dir)]);
 const prefix = chalk.gray(`${pkg.name}@${pkg.version}: `);
 const log = msg => console.log(prefix + chalk.green.bold(msg));
 const error = msg => console.error(prefix + chalk.red.bold(msg));
+const info = msg => console.log(prefix + chalk.gray.bold(msg));
 
-const question = message => ask.question(chalk.gray.bold(message));
+const question = (message, options) =>
+  ask.question(chalk.green.bold(message), options);
+const yesNo = (message, options) =>
+  ask.keyInYN(chalk.green.bold(message), options);
 
 module.exports = {
   paths,
@@ -35,4 +40,7 @@ module.exports = {
   log,
   error,
   question,
+  exists,
+  info,
+  yesNo,
 };
