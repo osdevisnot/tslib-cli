@@ -33,6 +33,7 @@ switch (command) {
     break;
   case 'test':
     process.env.NODE_ENV = 'test';
+    console.log('TCL: process.env', process.env);
     const watch = process.env.CI ? '--watch' : '';
     run(
       `${paths.bin('jest')} --config ${paths.config('jest.config.js')} ${watch}`
