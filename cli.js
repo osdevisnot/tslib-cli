@@ -38,6 +38,7 @@ switch (command) {
   case 'test':
     process.env.NODE_ENV = 'test';
     const watch = process.env.CI === 'true' ? ' --watch' : '';
+    console.log('TCL: `${tools.jest}${watch}`', `${tools.jest}${watch}`);
     run(`${tools.jest}${watch}`);
     break;
   case 'coverage':
