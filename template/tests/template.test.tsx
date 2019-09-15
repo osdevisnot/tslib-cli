@@ -1,4 +1,4 @@
-import { sum } from 'template_full';
+import { sum } from '../src/template';
 
 describe('template', () => {
   test('exports', () => {

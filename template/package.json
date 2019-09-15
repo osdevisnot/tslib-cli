@@ -27,5 +27,7 @@
     "watch": "tslib watch"
   },
   "prettier": "tslib-cli",
-  "devDependencies": {}
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {}
 }

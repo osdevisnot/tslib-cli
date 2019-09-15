@@ -29,29 +29,19 @@ module.exports = () => {
     },
     () => {
       ['src/template.tsx', 'tests/template.test.tsx'].map(f => {
-        rename(
-          paths.app(dest, f),
-          paths.app(dest, f.replace('template', packageNameSane))
-        );
+        rename(paths.app(dest, f), paths.app(dest, f.replace('template', packageNameSane)));
       });
       rename(paths.app(dest, 'gitignore'), paths.app(dest, '.gitignore'));
 
       log('Done !! Now Installing Dependencies...');
       if (process.argv[4] === 'link') {
-        run(
-          `yarn add --dev @types/jest ${paths.cli(
-            'tslib-cli-' + pkg.version + '.tgz'
-          )}`,
-          {
-            cwd: paths.app(dest),
-          }
-        );
+        run(`yarn add --prefer-offline --dev @types/jest ${paths.cli('tslib-cli-' + pkg.version + '.tgz')}`, {
+          cwd: paths.app(dest),
+        });
       } else {
-        run('yarn add --dev tslib-cli @types/jest', { cwd: paths.app(dest) });
+        run('yarn add --prefer-offline --dev tslib-cli @types/jest', { cwd: paths.app(dest) });
       }
-      ['git init', 'git add .', 'git commit -am "Unleash the Kraken"'].map(
-        cmd => run(cmd, { cwd: paths.app(dest) })
-      );
+      ['git init', 'git add .', 'git commit -am "Unleash the Kraken"'].map(cmd => run(cmd, { cwd: paths.app(dest) }));
     }
   );
 };
