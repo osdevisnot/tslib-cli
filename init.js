@@ -42,6 +42,6 @@ module.exports = () => {
         run('yarn add --prefer-offline --dev tslib-cli @types/jest', { cwd: paths.app(dest) });
       }
       ['git init', 'git add .', 'git commit -am "Unleash the Kraken"'].map(cmd => run(cmd, { cwd: paths.app(dest) }));
-    }
+    },
   );
 };
