@@ -23,7 +23,8 @@ const prefix = chalk.gray(`${pkg.name}@${pkg.version}: `);
 const log = msg => console.log(prefix + chalk.green.bold(msg));
 const error = msg => console.error(prefix + chalk.red.bold(msg));
 
-const question = message => ask.question(chalk.gray.bold(message));
+const question = (message, value) =>
+  ask.question(chalk.green(message) + chalk.gray(value ? ` [${value}] : ` : ` : `), { defaultInput: value });
 
 module.exports = {
   paths,

@@ -5,7 +5,7 @@
   "repository": "osdevisnot/tslib-cli",
   "license": "MIT",
   "author": "osdevisnot <osdevisnot@gmail.com>",
-  "main": "config/prettier.json",
+  "main": "./config/prettier.json",
   "bin": {
     "tslib": "cli.js"
   },
