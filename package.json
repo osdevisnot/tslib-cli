@@ -5,7 +5,7 @@
   "repository": "osdevisnot/tslib-cli",
   "license": "MIT",
   "author": "osdevisnot <osdevisnot@gmail.com>",
-  "main": "./config/prettier.json",
+  "main": "./config/prettier.config.json",
   "bin": {
     "tslib": "cli.js"
   },
@@ -20,7 +20,7 @@
     "sort": "sort-package-json",
     "postsort": "cd template && sort-package-json"
   },
-  "prettier": "./config/prettier.json",
+  "prettier": "./config/prettier.config.json",
   "dependencies": {
     "chalk": "^2.4.2",
     "coveralls": "^3.0.6",
