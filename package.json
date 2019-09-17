@@ -13,7 +13,7 @@
     "prepare": "npm run sort",
     "prepub": "npm run setup",
     "pub": "npm version patch",
-    "postpub": "npm publish",
+    "postpub": "npm publish && git push --follow-tags",
     "presetup": "git clean -fdX",
     "setup": "npm link",
     "postsetup": "npm pack",
