@@ -2,6 +2,7 @@
 
 const [executor, bin, command, ...args] = process.argv;
 
+const isCI = require('is-ci');
 const { paths, run, cpy, clean, error, log } = require('./utils');
 
 const configMap = {
@@ -36,7 +37,8 @@ switch (command) {
   case 'watch':
     process.env.NODE_ENV = 'development';
     clean('dist');
-    run(`${paths.bin('rollup')} -wc ${paths.config('rollup.config.js')}`);
+    const rollupFlags = isCI ? '-c' : '-wc';
+    run(`${paths.bin('rollup')} ${rollupFlags} ${paths.config('rollup.config.js')}`);
     break;
   case 'start':
     process.env.NODE_ENV = 'development';
@@ -45,7 +47,8 @@ switch (command) {
     break;
   case 'test':
     process.env.NODE_ENV = 'test';
-    run(`${paths.bin('jest')} --config ${paths.config('jest.config.js')} --watch`);
+    const jestFlags = isCI ? '--coverage' : '--watch';
+    run(`${paths.bin('jest')} --config ${paths.config('jest.config.js')} ${jestFlags}`);
     break;
   case 'coverage':
     process.env.NODE_ENV = 'test';
