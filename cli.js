@@ -68,7 +68,7 @@ switch (command) {
     ['git clean -fdX', 'yarn'].map(cmd => run(cmd));
     break;
   case 'pub':
-    ['yarn setup', 'git diff --quiet', 'yarn publish', 'git push --follow-tags'].map(cmd => run(cmd));
+    ['yarn setup', 'yarn coverage', 'git diff --quiet', 'yarn publish', 'git push --follow-tags'].map(cmd => run(cmd));
     break;
   default:
     error('No Such Command !!');
