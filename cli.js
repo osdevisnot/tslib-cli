@@ -4,6 +4,13 @@ const [executor, bin, command, ...args] = process.argv;
 
 const { paths, run, cpy, clean, error, log } = require('./utils');
 
+const configMap = {
+  jest: 'jest.config.js',
+  prettier: 'prettier.config.json',
+  rollup: 'rollup.config.js',
+  tslint: 'tslint.config.json',
+};
+
 process.env.COMMAND = command;
 
 log(`woking on '${command}'`);
@@ -13,8 +20,13 @@ switch (command) {
     require('./init')();
     break;
   case 'eject':
-    const type = process.argv[3];
-    cpy(paths.config(type), paths.app(type));
+    const type = configMap[process.argv[3]];
+    if (paths.config(type) !== paths.app(type)) {
+      cpy(paths.config(type), paths.app(type));
+      log(`Done !! ${type} is now available in project root.`);
+    } else {
+      error(`${type} is already ejected.`);
+    }
     break;
   case 'build':
     process.env.NODE_ENV = 'production';
@@ -47,7 +59,7 @@ switch (command) {
     run(`${paths.bin('prettier')} --write {src,tests,public}/*.*`);
     break;
   case 'lint':
-    run(`${paths.bin('tslint')} --fix -t codeFrame -p tsconfig.json -c ${paths.config('tslint.json')}`);
+    run(`${paths.bin('tslint')} --fix -t codeFrame -p tsconfig.json -c ${paths.config('tslint.config.json')}`);
     break;
   case 'setup':
     ['git clean -fdX', 'yarn'].map(cmd => run(cmd));
