@@ -59,7 +59,7 @@ switch (command) {
 		run(`${paths.bin('jest')} --config ${paths.config('jest.config.js')} --coverage`);
 		run(`${paths.bin('coveralls')} < ${paths.app('coverage', 'lcov.info')}`);
 	case 'format':
-		run(`${paths.bin('prettier')} --write {src,tests,public}/*.*`);
+		run(`${paths.bin('prettier')} --write "**/**/*.{tsx,ts,json,yml,html,css,md,mdx,gql,less,scss,jsx,js}"`);
 		break;
 	case 'lint':
 		run(`${paths.bin('tslint')} --fix -t codeFrame -p tsconfig.json -c ${paths.config('tslint.config.json')}`);
