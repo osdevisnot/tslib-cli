@@ -58,6 +58,7 @@ switch (command) {
 		process.env.NODE_ENV = 'test';
 		run(`${paths.bin('jest')} --config ${paths.config('jest.config.js')} --coverage`);
 		run(`${paths.bin('coveralls')} < ${paths.app('coverage', 'lcov.info')}`);
+		break;
 	case 'format':
 		run(`${paths.bin('prettier')} --write "**/**/*.{tsx,ts,json,yml,html,css,md,mdx,gql,less,scss,jsx,js}"`);
 		break;
