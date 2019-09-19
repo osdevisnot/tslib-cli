@@ -34,7 +34,7 @@ module.exports = () => {
 			});
 
 			// rename files
-			[('src/template.tsx', 'tests/template.test.tsx')].map(f => {
+			['src/template.tsx', 'tests/template.test.tsx'].map(f => {
 				rename(paths.app(dest, f), paths.app(dest, f.replace('template', packageNameSane)));
 			});
 
