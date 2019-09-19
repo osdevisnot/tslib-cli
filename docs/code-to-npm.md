@@ -22,7 +22,7 @@ This will ask you few questions for the metadata of the package, populate all th
 
 #### Step 3: Release to NPM
 
-Assuming Step 1 and 2 was ok, you are now ready to publish  to NPM. Use built-in `pub` command to launch your project.
+Assuming Step 1 and 2 was ok, you are now ready to publish to NPM. Use built-in `pub` command to launch your project.
 
 ```bash
 tslib pub
@@ -31,4 +31,3 @@ tslib pub
 Similar to `init` command, `pub` will also ask you for metadata. Thankfully, just the version number you want to publish.
 
 > Pro Tip: This is good time to publish your package to claim the name on NPM. Often times, the names that are first shown as available, won't actually be available as NPM restricts names that closely match an existing name.
-

@@ -8,13 +8,13 @@ const ask = require('readline-sync');
 const pkg = require('./package.json');
 
 const paths = {
-  app: (...p) => path.join(process.cwd(), ...p),
-  cli: (...p) => path.join(__dirname, ...p),
-  bin: (...p) => path.join(process.cwd(), 'node_modules', '.bin', ...p),
+	app: (...p) => path.join(process.cwd(), ...p),
+	cli: (...p) => path.join(__dirname, ...p),
+	bin: (...p) => path.join(process.cwd(), 'node_modules', '.bin', ...p),
 };
 paths.config = (...p) => {
-  const local = paths.app(...p);
-  return fs.existsSync(local) ? local : paths.app('node_modules', 'tslib-cli', 'config', ...p);
+	const local = paths.app(...p);
+	return fs.existsSync(local) ? local : paths.app('node_modules', 'tslib-cli', 'config', ...p);
 };
 
 const run = (cmd, options) => sync(cmd, { stdio: 'inherit', ...options });
@@ -27,15 +27,15 @@ const log = msg => console.log(prefix + chalk.green.bold(msg));
 const error = msg => console.error(prefix + chalk.red.bold(msg));
 
 const question = (message, value) =>
-  ask.question(chalk.green(message) + chalk.gray(value ? ` [${value}] : ` : ` : `), { defaultInput: value });
+	ask.question(chalk.green(message) + chalk.gray(value ? ` [${value}] : ` : ` : `), { defaultInput: value });
 
 module.exports = {
-  paths,
-  run,
-  cpy,
-  rename,
-  clean,
-  log,
-  error,
-  question,
+	paths,
+	run,
+	cpy,
+	rename,
+	clean,
+	log,
+	error,
+	question,
 };
