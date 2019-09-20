@@ -1,3 +1,3 @@
-import { sum } from 'template_full';
+import { sum } from '../src';
 
 console.log('this works => ', sum);

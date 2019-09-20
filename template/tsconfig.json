@@ -15,6 +15,6 @@
 		"target": "esnext",
 		"removeComments": true,
 		"baseUrl": ".",
-		"paths": { "template_full": ["src/template.tsx"] }
+		"paths": { "template_full": ["src/index.tsx"] }
 	}
 }

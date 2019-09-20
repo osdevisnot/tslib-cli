@@ -60,7 +60,11 @@ switch (command) {
 		run(`${paths.bin('coveralls')} < ${paths.app('coverage', 'lcov.info')}`);
 		break;
 	case 'format':
-		run(`${paths.bin('prettier')} --write "**/**/*.{tsx,ts,json,yml,html,css,md,mdx,gql,less,scss,jsx,js}"`);
+		run(
+			`${paths.bin(
+				'prettier',
+			)} --write "{public,src,tests}/**/*.{tsx,ts,json,yml,html,css,md,mdx,gql,less,scss,jsx,js}"`,
+		);
 		break;
 	case 'lint':
 		run(`${paths.bin('tslint')} --fix -t codeFrame -p tsconfig.json -c ${paths.config('tslint.config.json')}`);

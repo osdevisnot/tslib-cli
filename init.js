@@ -33,17 +33,12 @@ module.exports = () => {
 				rename(paths.app(dest, `_${file}`), paths.app(dest, file));
 			});
 
-			// rename files
-			['src/template.tsx', 'tests/template.test.tsx'].map(f => {
-				rename(paths.app(dest, f), paths.app(dest, f.replace('template', packageNameSane)));
-			});
-
 			log('Done !! Now Installing Dependencies...');
 
 			if (process.argv[4] === 'link') {
 				pkg.name = paths.cli('tslib-cli-' + pkg.version + '.tgz');
 			}
-			run(`yarn add --prefer-offline --dev ${pkg.name} @types/jest`, { cwd: paths.app(dest) });
+			run(`yarn add --dev ${pkg.name} @types/jest`, { cwd: paths.app(dest) });
 
 			[
 				'git init',

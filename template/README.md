@@ -20,6 +20,4 @@ yarn lint # lint pkg files
 yarn setup # clean setup
 ```
 
-## License
-
-[MIT License](https://oss.ninja/mit/username) @ [username](https://github.com/username)
+## [License](LICENSE)
