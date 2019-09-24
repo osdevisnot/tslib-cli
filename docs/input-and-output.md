@@ -25,5 +25,18 @@
 * `browser` determines the target for minified ESM output
 * `types` determines the target for Typescript Definition Files
 
+### Node CLI packages
+
+In addition to compiling source for browser, `tslib-cli` supports compiling for node js, for CLI applications. `tslib-cli` determines this based on if you have a bin property, pointing to a file in your `package.json`.  
+
+For example, below configuration in `package.json` will compile `src/index.tsx` to `dist/index.js`. Since this is a binary command, `tslib-cli` will automatically add the shebang line as first line in output and set the file as executable in `unix` like operating systems.
+
+```javascript
+"bin": {
+    "unpkg": "dist/index.js"
+},
+"source": "src/index.tsx",
+```
+
 
 
