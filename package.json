@@ -21,6 +21,7 @@
 	},
 	"prettier": "./config/prettier.config.json",
 	"dependencies": {
+		"builtin-modules": "^3.1.0",
 		"chalk": "^2.4.2",
 		"coveralls": "^3.0.6",
 		"del": "^5.1.0",

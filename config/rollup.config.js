@@ -11,6 +11,7 @@ const replace = require('rollup-plugin-replace');
 const shebang = require('rollup-plugin-add-shebang');
 const nodeGlobals = require('rollup-plugin-node-globals');
 const executable = require('rollup-plugin-executable');
+const builtins = require('builtin-modules');
 // const minifyHtml = require('rollup-plugin-minify-html-literals');
 
 const command = process.env.COMMAND;
@@ -22,10 +23,11 @@ let external = Object.keys(pkg.peerDependencies || {});
 const config = options => ({
 	input: options.input,
 	output: options.output,
-	external: options.external || external,
+	external: options.bin ? [...builtins, ...external] : external,
 	plugins: [
 		json(),
-		nodeResolve({ mainFields: ['module', 'main'] }),
+		options.bin && nodeGlobals(),
+		nodeResolve({ mainFields: ['module', 'main'], preferBuiltins: !!options.bin }),
 		typescript(),
 		commonjs(),
 		(command === 'start' || command === 'watch' || options.replace) &&
@@ -39,7 +41,6 @@ const config = options => ({
 				compress: { drop_console: true, drop_debugger: true, passes: 3 },
 			}),
 		options.minify && filesize({ showBrotliSize: true }),
-		options.bin && nodeGlobals(),
 		options.bin && shebang({ include: options.output.file }),
 		options.bin && executable(),
 	].filter(Boolean),
