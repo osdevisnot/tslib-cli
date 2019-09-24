@@ -1,6 +1,6 @@
 # Introduction
 
-> Maximum overkill for typescript and javascript library authors.
+> Maximum overkill for typescript & javascript library authors.
 
 ![](.gitbook/assets/intro%20%281%29.jpeg)
 

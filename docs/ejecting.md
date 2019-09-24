@@ -8,7 +8,7 @@ By default, `tslib-cli` include reasonable and modern default to underlying tool
 tslib eject <tool>
 ```
 
-this will add `<tool>.config.json` file at the root of your project for you to tweak configuration. All the CLI commands should now use your ejected config.
+this will add `<tool>.config.json` or `<tool>.config.js` file at the root of your project for you to tweak configuration. All the CLI commands should now use your ejected config.
 
 ### Ejecting `jest`
 
