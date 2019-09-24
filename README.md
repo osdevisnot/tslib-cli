@@ -6,8 +6,10 @@
 
 ## Documentation
 
-Read the docs at https://tslib-cli.gitbook.io/tslib-cli/
+Read the docs at https://tslib-cli.js.org
 
 ## License
 
-[MIT License](https://oss.ninja/mit/username) @ [username](https://github.com/username)
+`tslib-cli` is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
+Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
+Created with ♥ by [@osdevisnot](https://github.com/osdevisnot) and [all contributors](https://github.com/osdeisnot/tslib-cli/graphs/contributors).
