@@ -22,6 +22,6 @@ yarn setup # clean setup
 
 ## License
 
-**template_full** is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
+`**template_full**` is licensed under the [MIT License](http://opensource.org/licenses/MIT).<br>
 Documentation is licensed under [Creative Common License](http://creativecommons.org/licenses/by/4.0/).<br>
 Created with ♥ by [@username](https://github.com/username) and [all contributors](https://github.com/username/template/graphs/contributors).
