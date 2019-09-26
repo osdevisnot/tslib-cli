@@ -1,7 +1,7 @@
 const path = require('path');
 const json = require('rollup-plugin-json');
 const nodeResolve = require('rollup-plugin-node-resolve');
-const typescript = require('rollup-plugin-typescript');
+const typescript = require('rollup-plugin-typescript2');
 const commonjs = require('rollup-plugin-commonjs');
 const serve = require('rollup-plugin-serve');
 const livereload = require('rollup-plugin-livereload');
@@ -28,7 +28,14 @@ const config = options => ({
 		json(),
 		options.bin && nodeGlobals(),
 		nodeResolve({ mainFields: ['module', 'main'], preferBuiltins: !!options.bin }),
-		typescript(),
+		typescript({
+			useTsconfigDeclarationDir: true,
+			tsconfigOverride: {
+				include: [command === 'deploy' ? 'public' : 'src'],
+				compilerOptions: { declaration: command === 'build' },
+			},
+			typescript: require('typescript'),
+		}),
 		commonjs(),
 		(command === 'start' || command === 'watch' || options.replace) &&
 			replace({ 'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV) }),
