@@ -1,6 +1,6 @@
 {
 	"name": "tslib-cli",
-	"version": "5.0.13",
+	"version": "5.0.14",
 	"description": "maximum overkill for typescript and javascript library authors",
 	"repository": "osdevisnot/tslib-cli",
 	"license": "MIT",
