@@ -18,7 +18,7 @@ const command = process.env.COMMAND;
 
 const pkg = require(path.join(process.cwd(), 'package.json'));
 
-let external = Object.keys(pkg.peerDependencies || {});
+let external = Object.keys(Object.assign({}, pkg.peerDependencies || {}, pkg.dependencies || {}));
 
 const config = options => ({
 	input: options.input,
