@@ -16,6 +16,16 @@ const builtins = require('builtin-modules');
 
 const command = process.env.COMMAND;
 
+const snakeToCamel = str =>
+	str.replace(/([-_][a-z])/g, group =>
+		group
+			.toUpperCase()
+			.replace('-', '')
+			.replace('_', ''),
+	);
+
+const saneName = str => snakeToCamel(str.replace('@', '').replace('/', '.'));
+
 const pkg = require(path.join(process.cwd(), 'package.json'));
 
 let external = Object.keys(Object.assign({}, pkg.peerDependencies || {}, pkg.dependencies || {}));
@@ -57,7 +67,13 @@ const bundles =
 	command === 'start'
 		? [{ input: pkg.example, output: { file: pkg.browser || pkg.module, format: 'es' } }]
 		: [
-				pkg.browser && { input: pkg.source, output: { file: pkg.browser, format: 'es' }, minify: true, replace: true },
+				pkg.browser && {
+					input: pkg.source,
+					output: { file: pkg.browser, format: 'umd', name: saneName(pkg.name) },
+					minify: true,
+					replace: true,
+				},
+				pkg.unpkg && { input: pkg.source, output: { file: pkg.browser, format: 'es' }, minify: true, replace: true },
 				pkg.module && { input: pkg.source, output: { file: pkg.module, format: 'es' } },
 				pkg.main && { input: pkg.source, output: { file: pkg.main, format: 'cjs' } },
 				pkg.bin && { input: pkg.source, output: { file: Object.values(pkg.bin)[0], format: 'cjs' }, bin: true },
