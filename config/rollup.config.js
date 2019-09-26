@@ -73,7 +73,7 @@ const bundles =
 					minify: true,
 					replace: true,
 				},
-				pkg.unpkg && { input: pkg.source, output: { file: pkg.browser, format: 'es' }, minify: true, replace: true },
+				pkg.unpkg && { input: pkg.source, output: { file: pkg.unpkg, format: 'es' }, minify: true, replace: true },
 				pkg.module && { input: pkg.source, output: { file: pkg.module, format: 'es' } },
 				pkg.main && { input: pkg.source, output: { file: pkg.main, format: 'cjs' } },
 				pkg.bin && { input: pkg.source, output: { file: Object.values(pkg.bin)[0], format: 'cjs' }, bin: true },
