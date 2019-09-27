@@ -25,6 +25,8 @@ const clean = dir => del([paths.app(dir)]);
 const prefix = chalk.gray(`${pkg.name}@${pkg.version}: `);
 const log = msg => console.log(prefix + chalk.green.bold(msg));
 const error = msg => console.error(prefix + chalk.red.bold(msg));
+const warn = msg => console.error(prefix + chalk.yellow.bold(msg));
+const info = msg => console.error(prefix + chalk.gray(msg));
 
 const question = (message, value) =>
 	ask.question(chalk.green(message) + chalk.gray(value ? ` [${value}] : ` : ` : `), { defaultInput: value });
@@ -37,5 +39,7 @@ module.exports = {
 	clean,
 	log,
 	error,
+	warn,
+	info,
 	question,
 };
