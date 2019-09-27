@@ -27,6 +27,7 @@ const snakeToCamel = str =>
 const saneName = str => snakeToCamel(str.replace('@', '').replace('/', '.'));
 
 const pkg = require(path.join(process.cwd(), 'package.json'));
+const tsconfig = require(path.join(process.cwd(), 'tsconfig.json'));
 
 let external = Object.keys(Object.assign({}, pkg.peerDependencies || {}, pkg.dependencies || {}));
 
@@ -42,7 +43,7 @@ const config = options => ({
 			useTsconfigDeclarationDir: true,
 			tsconfigOverride: {
 				include: [command === 'deploy' ? 'public' : 'src'],
-				compilerOptions: { declaration: command === 'build' },
+				compilerOptions: { declaration: tsconfig.compilerOptions.allowJs ? false : command === 'build' },
 			},
 			typescript: require('typescript'),
 		}),
