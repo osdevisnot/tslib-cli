@@ -4,6 +4,7 @@ const [executor, bin, command, ...args] = process.argv;
 
 const isCI = require('is-ci');
 const { paths, run, cpy, clean, error, log } = require('./utils');
+const runner = require('./runner');
 
 const configMap = {
 	jest: 'jest.config.js',
@@ -73,18 +74,20 @@ switch (command) {
 		run(`${paths.bin('tslint')} --fix -t codeFrame -p tsconfig.json -c ${paths.config('tslint.config.json')}`);
 		break;
 	case 'setup':
-		['git clean -fdX', 'yarn'].map(cmd => run(cmd));
+		['git clean -fdX', runner.install()].map(cmd => run(cmd));
 		break;
 	case 'pub':
 		[
-			'yarn setup',
-			'yarn format',
-			'yarn lint',
-			'yarn coverage',
+			runner.script('setup'),
+			runner.script('format'),
+			runner.script('lint'),
+			runner.script('coverage'),
 			'git diff --quiet',
-			'yarn publish',
+			runner.publish(),
 			'git push --follow-tags',
-		].map(cmd => run(cmd));
+		]
+			.filter(Boolean)
+			.map(cmd => run(cmd));
 		break;
 	default:
 		error('No Such Command !!');

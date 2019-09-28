@@ -23,6 +23,7 @@
 	"dependencies": {
 		"builtin-modules": "^3.1.0",
 		"chalk": "^2.4.2",
+		"command-exists": "^1.2.8",
 		"coveralls": "^3.0.6",
 		"deepmerge": "^4.0.0",
 		"del": "^5.1.0",

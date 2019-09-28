@@ -18,3 +18,8 @@ yarn coverage
 yarn format
 yarn lint
 
+npm run build
+npm run coverage
+npm run format
+npm run lint
+
