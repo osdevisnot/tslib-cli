@@ -1,8 +1,9 @@
+const fs = require('fs');
 const commandExists = require('command-exists').sync;
 
-const hasYarn = commandExists('yarn');
-
 const { run, error, warn, question, info, paths } = require('./utils');
+
+const hasYarn = commandExists('yarn') && !fs.existsSync(paths.app('package-lock.json'));
 
 let pkg;
 
