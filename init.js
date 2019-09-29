@@ -3,6 +3,7 @@ const replace = require('replacestream');
 const pkg = require('./package.json');
 
 const { paths, run, rename, log, question } = require('./utils');
+const runner = require('./runner');
 
 module.exports = () => {
 	const dest = process.argv[3];
@@ -38,8 +39,7 @@ module.exports = () => {
 			if (process.argv[4] === 'link') {
 				pkg.name = paths.cli('tslib-cli-' + pkg.version + '.tgz');
 			}
-			run(`yarn add --dev ${pkg.name} @types/jest`, { cwd: paths.app(dest) });
-
+			run(runner.install(`${pkg.name} @types/jest`, true), { cwd: paths.app(dest) });
 			[
 				'git init',
 				'git add .',

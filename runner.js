@@ -4,27 +4,47 @@ const hasYarn = commandExists('yarn');
 
 const { run, error, question, info, paths } = require('./utils');
 
-let pkg = {};
+let pkg;
+
 try {
 	pkg = require(paths.app('package.json'));
 } catch (e) {}
 
 module.exports = {
-	install: arg => (hasYarn ? (arg ? `yarn add ${arg}` : `yarn`) : `npm install ${arg}`),
+	install: (deps, isDev = false) => {
+		let command = hasYarn ? 'yarn' : 'npm install';
+		if (deps) {
+			let flags = '';
+			if (isDev) {
+				flags = hasYarn ? ' add --dev' : ' --save-dev';
+			} else {
+				flags = hasYarn ? ' add' : '';
+			}
+			command = command + flags + ' ' + deps;
+		}
+		return command;
+	},
 	publish: () => {
 		if (hasYarn) {
 			run('yarn publish');
 		} else {
 			info('Bumping version...');
-			info('Current version: ', pkg.version);
+			info(`Current version: ${pkg.version}`);
 			const version = question('New version: ');
 			run(`npm version ${version}`);
-			run(`npm publish`);
+			try {
+				run(`npm publish`);
+			} catch (e) {
+				error('Publish Failed !!', e);
+				warn('Reverting tag v${version}');
+				run(`git tag -d v${version}`);
+				run('git reset HEAD~');
+				process.exit(1);
+			}
 		}
 	},
 	script: script => {
-		if (pkg && pkg.scripts && pkg.scripts[script])
-			return hasYarn ? `yarn ${pkg.scripts[script]}` : `npm run ${pkg.scripts[script]}`;
+		if (pkg && pkg.scripts && pkg.scripts[script]) return hasYarn ? `yarn ${script}` : `npm run ${script}`;
 		else {
 			error(`command ${script} NOT FOUND (skipping...)`);
 			return false;

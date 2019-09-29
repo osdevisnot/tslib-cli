@@ -77,17 +77,17 @@ switch (command) {
 		['git clean -fdX', runner.install()].map(cmd => run(cmd));
 		break;
 	case 'pub':
-		[
-			runner.script('setup'),
-			runner.script('format'),
-			runner.script('lint'),
-			runner.script('coverage'),
-			'git diff --quiet',
-			runner.publish(),
-			'git push --follow-tags',
-		]
+		[runner.script('setup'), runner.script('format'), runner.script('lint'), runner.script('coverage')]
 			.filter(Boolean)
 			.map(cmd => run(cmd));
+		try {
+			run('git diff --quiet');
+		} catch (e) {
+			error('Working directory not clean. Aborting release !!');
+			process.exit(1);
+		}
+		runner.publish();
+		run('git push --follow-tags');
 		break;
 	default:
 		error('No Such Command !!');

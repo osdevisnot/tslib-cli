@@ -12,7 +12,7 @@
 	"scripts": {
 		"prepare": "npm run sort",
 		"prepub": "npm run setup",
-		"pub": "npm version patch",
+		"pub": "npm version",
 		"postpub": "npm publish && git push --follow-tags",
 		"presetup": "git clean -fdX",
 		"setup": "npm link",
