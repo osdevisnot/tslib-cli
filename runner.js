@@ -2,7 +2,7 @@ const commandExists = require('command-exists').sync;
 
 const hasYarn = commandExists('yarn');
 
-const { run, error, question, info, paths } = require('./utils');
+const { run, error, warn, question, info, paths } = require('./utils');
 
 let pkg;
 
