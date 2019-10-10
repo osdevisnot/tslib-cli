@@ -34,7 +34,7 @@ let external = Object.keys(Object.assign({}, pkg.peerDependencies || {}, pkg.dep
 const config = options => ({
 	input: options.input,
 	output: options.output,
-	external: options.bin ? [...builtins, ...external] : external,
+	external: [...builtins, ...external],
 	plugins: [
 		json(),
 		options.bin && nodeGlobals(),
