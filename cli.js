@@ -21,9 +21,6 @@ switch (command) {
 	case 'init':
 		require('./init')();
 		break;
-	case 'port':
-		require('./port')();
-		break;
 	case 'eject':
 		const type = configMap[process.argv[3]];
 		if (paths.config(type) !== paths.app(type)) {
