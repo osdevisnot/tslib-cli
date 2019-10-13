@@ -1,32 +1,49 @@
 {
-	"name": "template_full",
-	"version": "0.0.0",
-	"description": "<description>",
-	"repository": "username/template",
-	"license": "MIT",
-	"author": "username <useremail>",
-	"files": ["dist"],
-	"main": "dist/index.cjs.js",
-	"module": "dist/index.esm.js",
-	"source": "src/index.tsx",
-	"browser": "dist/index.js",
-	"types": "dist/types/index.d.ts",
-	"example": "public/index.tsx",
-	"scripts": {
-		"build": "tslib build",
-		"coverage": "tslib coverage",
-		"coveralls": "tslib coveralls",
-		"format": "tslib format",
-		"lint": "tslib lint",
-		"prepare": "tslib build",
-		"pub": "tslib pub",
-		"setup": "tslib setup",
-		"start": "tslib start",
-		"test": "tslib test",
-		"watch": "tslib watch"
-	},
-	"prettier": "tslib-cli",
-	"dependencies": {},
-	"devDependencies": {},
-	"peerDependencies": {}
+  "name": "template_full",
+  "version": "0.0.0",
+  "description": "<description>",
+  "repository": "username/template",
+  "license": "MIT",
+  "author": "username <useremail>",
+  "files": [
+    "dist"
+  ],
+  "main": "dist/index.cjs.js",
+  "module": "dist/index.esm.js",
+  "source": "src/index.tsx",
+  "browser": "dist/index.js",
+  "types": "dist/types/index.d.ts",
+  "example": "public/index.tsx",
+  "scripts": {
+    "build": "tslib build",
+    "coverage": "tslib coverage",
+    "coveralls": "tslib coveralls",
+    "format": "tslib format",
+    "lint": "tslib lint",
+    "prepare": "tslib build",
+    "pub": "tslib pub",
+    "setup": "tslib setup",
+    "start": "tslib start",
+    "test": "tslib test",
+    "watch": "tslib watch"
+  },
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ],
+    "package.json": [
+      "sort-package-json",
+      "git add"
+    ]
+  },
+  "prettier": "tslib-cli",
+  "dependencies": {},
+  "devDependencies": {},
+  "peerDependencies": {}
 }
