@@ -39,7 +39,7 @@ module.exports = () => {
 			if (process.argv[4] === 'link') {
 				pkg.name = paths.cli('tslib-cli-' + pkg.version + '.tgz');
 			}
-			run(runner.install(`${pkg.name} @types/jest husky lint-staged prettier sort-package-json`, true), {
+			run(runner.install(`${pkg.name} @types/jest husky lint-staged sort-package-json`, true), {
 				cwd: paths.app(dest),
 			});
 			[
