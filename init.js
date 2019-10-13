@@ -34,6 +34,14 @@ module.exports = () => {
 				rename(paths.app(dest, `_${file}`), paths.app(dest, file));
 			});
 
+			[
+				'git init',
+				'git add .',
+				`git config user.name ${userName}`,
+				`git config user.email ${email}`,
+				'git commit -am "Unleash the Kraken"',
+			].map(cmd => run(cmd, { cwd: paths.app(dest) }));
+
 			log('Done !! Now Installing Dependencies...');
 
 			if (process.argv[4] === 'link') {
@@ -42,13 +50,7 @@ module.exports = () => {
 			run(runner.install(`${pkg.name} @types/jest husky lint-staged sort-package-json`, true), {
 				cwd: paths.app(dest),
 			});
-			[
-				'git init',
-				'git add .',
-				`git config user.name ${userName}`,
-				`git config user.email ${email}`,
-				'git commit -am "Unleash the Kraken"',
-			].map(cmd => run(cmd, { cwd: paths.app(dest) }));
+			['git add package.json', 'git commit --amend -C HEAD'].map(cmd => run(cmd, { cwd: paths.app(dest) }));
 		},
 	);
 };

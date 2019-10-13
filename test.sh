@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+set -x
+
 npm cache clean --force
 
 npm run setup
