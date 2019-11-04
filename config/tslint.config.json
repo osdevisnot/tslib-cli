@@ -11,6 +11,7 @@
 		"object-literal-sort-keys": false,
 		"one-variable-per-declaration": false,
 		"only-arrow-functions": false,
+		"prefer-const": false,
 		"variable-name": false
 	}
 }
