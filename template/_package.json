@@ -13,7 +13,6 @@
 	"source": "src/index.tsx",
 	"browser": "dist/index.js",
 	"types": "dist/types/index.d.ts",
-	"example": "public/index.tsx",
 	"scripts": {
 		"build": "tslib build",
 		"coverage": "tslib coverage",
@@ -45,5 +44,8 @@
 	"prettier": "tslib-cli",
 	"dependencies": {},
 	"devDependencies": {},
-	"peerDependencies": {}
+	"peerDependencies": {},
+	"klap": {
+		"example": "public/index.tsx"
+	}
 }
