@@ -34,7 +34,7 @@
 		"prettier": "1.18.2",
 		"readline-sync": "1.4.10",
 		"replacestream": "4.0.3",
-		"rollup": "1.26.3",
+		"rollup": "1.27.1",
 		"rollup-plugin-add-shebang": "0.3.1",
 		"rollup-plugin-commonjs": "10.1.0",
 		"rollup-plugin-executable": "1.5.1",
