@@ -1,11 +1,11 @@
 {
 	"name": "tslib-cli",
-	"version": "5.4.1",
+	"version": "6.0.1",
 	"description": "maximum overkill for typescript and javascript library authors",
 	"repository": "osdevisnot/tslib-cli",
 	"license": "MIT",
 	"author": "osdevisnot <osdevisnot@gmail.com>",
-	"main": "./config/prettier.config.json",
+	"main": "config/prettier.config.json",
 	"bin": {
 		"tslib": "cli.js"
 	},
@@ -21,39 +21,25 @@
 	},
 	"prettier": "./config/prettier.config.json",
 	"dependencies": {
-		"@rollup/plugin-replace": "2.2.0",
-		"builtin-modules": "3.1.0",
-		"chalk": "2.4.2",
+		"chalk": "3.0.0",
 		"command-exists": "1.2.8",
-		"coveralls": "3.0.7",
-		"deepmerge": "4.2.2",
+		"coveralls": "3.0.8",
 		"del": "5.1.0",
 		"is-ci": "2.0.0",
 		"jest": "24.9.0",
+		"klap": "3.2.2",
 		"ncp": "2.0.0",
-		"prettier": "1.18.2",
+		"prettier": "1.19.1",
 		"readline-sync": "1.4.10",
 		"replacestream": "4.0.3",
-		"rollup": "1.26.3",
-		"rollup-plugin-add-shebang": "0.3.1",
-		"rollup-plugin-commonjs": "10.1.0",
-		"rollup-plugin-executable": "1.5.1",
-		"rollup-plugin-filesize": "6.2.1",
-		"rollup-plugin-json": "4.0.0",
-		"rollup-plugin-livereload": "1.0.4",
-		"rollup-plugin-node-globals": "1.4.0",
-		"rollup-plugin-node-resolve": "5.2.0",
-		"rollup-plugin-serve": "1.0.1",
-		"rollup-plugin-terser": "5.1.2",
-		"rollup-plugin-typescript2": "0.24.3",
-		"ts-jest": "24.1.0",
+		"ts-jest": "24.2.0",
 		"tslib": "1.10.0",
-		"tslint": "5.20.0",
+		"tslint": "5.20.1",
 		"tslint-config-prettier": "1.18.0",
-		"typescript": "3.6.4"
+		"typescript": "3.7.2"
 	},
 	"devDependencies": {
-		"@types/jest": "24.0.21",
-		"@types/node": "12.12.5"
+		"@types/jest": "24.0.23",
+		"@types/node": "12.12.14"
 	}
 }
