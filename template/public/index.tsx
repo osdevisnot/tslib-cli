@@ -1,3 +1,3 @@
-import { sum } from '../src';
+import { sum } from '../src'
 
-console.log('this works => ', sum);
+console.log('this works => ', sum)

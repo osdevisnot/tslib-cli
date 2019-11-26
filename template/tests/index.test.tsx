@@ -1,8 +1,8 @@
-import { sum } from '../src';
+import { sum } from '../src'
 
 describe('template', () => {
 	test('exports', () => {
-		expect(sum).toBeDefined();
-		expect(typeof sum).toEqual('function');
-	});
-});
+		expect(sum).toBeDefined()
+		expect(typeof sum).toEqual('function')
+	})
+})
