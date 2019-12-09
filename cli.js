@@ -38,18 +38,18 @@ const execKlap = async command => {
 			break
 		case 'build':
 			process.env.NODE_ENV = 'production'
-			clean('dist')
+			clean('dist/*.*')
 			execKlap(command)
 			run(`${paths.bin('tsc')} -p ${paths.app('tsconfig.json')}`)
 			break
 		case 'watch':
 			process.env.NODE_ENV = 'development'
-			clean('dist')
+			clean('dist/*.*')
 			execKlap(command)
 			break
 		case 'start':
 			process.env.NODE_ENV = 'development'
-			clean('dist')
+			clean('dist/*.*')
 			execKlap(command)
 			break
 		case 'test':
