@@ -40,7 +40,6 @@ This will create a `tslint.config.json` at the root of project. The `lint` comma
 tslib eject prettier
 ```
 
-This will create `prettier.config.json` at the root of the project. 
+This will create `prettier.config.json` at the root of the project.
 
 > For `prettier`, you need to manually change a `prettier` property in `package.json`. This might change in future.
-

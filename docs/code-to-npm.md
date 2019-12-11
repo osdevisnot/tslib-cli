@@ -31,4 +31,3 @@ Similar to `init` command, `pub` will also ask you for metadata. Thankfully, jus
 > Pro Tip: This is good time to publish your package to claim the name on NPM. Often times, the names that are first shown as available, won't actually be available as NPM restricts names that closely match an existing name.
 
 See [The Publish Workflow](publish-workflow.md) for more details.
-

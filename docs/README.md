@@ -6,9 +6,9 @@
 
 ## TL;DR
 
-* [OcJS](https://twitter.com/hashtag/0cJS) - Rollup + Jest + Typescript + TSLint + Prettier
-* Best Practices setup for build, format, lint and publish workflows
-* Save Hours setting up tooling to release a library to NPM.
+- [OcJS](https://twitter.com/hashtag/0cJS) - Rollup + Jest + Typescript + TSLint + Prettier
+- Best Practices setup for build, format, lint and publish workflows
+- Save Hours setting up tooling to release a library to NPM.
 
 ## Why Typescript ?
 
@@ -18,12 +18,12 @@ As a superset of Javascript, Typescript provides optional typing and deep Intell
 
 Often times, strong typing might seem counter productive and not worth the efforts. I agree when it comes to small scale projects, however for package development, Typescript has some serious advantages:
 
-* More robust code that is easier to maintain.
-* The package can be used both by Typescript and Javascript users.
-* If your library becomes popular, there will sooner or later be a demand for type definitions and writing those manually is time-consuming, error-prone and harder to update.
-* With type definitions in the package, the user don't have to download the types from another package
-* Strong typing are more self documenting and makes the code more understandable.
-* Even if you consumer doesn't use Typescript, some editors like vscode will use type definitions for much better IntelliSense.
+- More robust code that is easier to maintain.
+- The package can be used both by Typescript and Javascript users.
+- If your library becomes popular, there will sooner or later be a demand for type definitions and writing those manually is time-consuming, error-prone and harder to update.
+- With type definitions in the package, the user don't have to download the types from another package
+- Strong typing are more self documenting and makes the code more understandable.
+- Even if you consumer doesn't use Typescript, some editors like vscode will use type definitions for much better IntelliSense.
 
 ## Installation
 
@@ -38,4 +38,3 @@ or if you are still using NPM
 ```bash
 npm install -g tslib-cli
 ```
-

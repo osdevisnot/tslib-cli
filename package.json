@@ -1,45 +1,45 @@
 {
-	"name": "tslib-cli",
-	"version": "6.0.8",
-	"description": "maximum overkill for typescript and javascript library authors",
-	"repository": "osdevisnot/tslib-cli",
-	"license": "MIT",
-	"author": "osdevisnot <osdevisnot@gmail.com>",
-	"main": "config/prettier.config.json",
-	"bin": {
-		"tslib": "cli.js"
-	},
-	"scripts": {
-		"prepare": "npm run sort",
-		"prepub": "npm run setup",
-		"pub": "npm version",
-		"postpub": "npm publish && git push --follow-tags",
-		"presetup": "git clean -fdX",
-		"setup": "npm link",
-		"postsetup": "npm pack",
-		"sort": "sort-package-json"
-	},
-	"prettier": "./config/prettier.config.json",
-	"dependencies": {
-		"chalk": "3.0.0",
-		"command-exists": "1.2.8",
-		"coveralls": "3.0.9",
-		"del": "5.1.0",
-		"is-ci": "2.0.0",
-		"jest": "24.9.0",
-		"klap": "3.5.1",
-		"ncp": "2.0.0",
-		"prettier": "1.19.1",
-		"readline-sync": "1.4.10",
-		"replacestream": "4.0.3",
-		"ts-jest": "24.2.0",
-		"tslib": "1.10.0",
-		"tslint": "5.20.1",
-		"tslint-config-prettier": "1.18.0",
-		"typescript": "3.7.3"
-	},
-	"devDependencies": {
-		"@types/jest": "24.0.23",
-		"@types/node": "12.12.16"
-	}
+  "name": "tslib-cli",
+  "version": "6.0.8",
+  "description": "maximum overkill for typescript and javascript library authors",
+  "repository": "osdevisnot/tslib-cli",
+  "license": "MIT",
+  "author": "osdevisnot <osdevisnot@gmail.com>",
+  "main": "config/prettier.config.json",
+  "bin": {
+    "tslib": "cli.js"
+  },
+  "scripts": {
+    "prepare": "npm run sort",
+    "prepub": "npm run setup",
+    "pub": "npm version",
+    "postpub": "npm publish && git push --follow-tags",
+    "presetup": "git clean -fdX",
+    "setup": "npm link",
+    "postsetup": "npm pack",
+    "sort": "sort-package-json"
+  },
+  "prettier": "./config/prettier.config.json",
+  "dependencies": {
+    "chalk": "3.0.0",
+    "command-exists": "1.2.8",
+    "coveralls": "3.0.9",
+    "del": "5.1.0",
+    "is-ci": "2.0.0",
+    "jest": "24.9.0",
+    "klap": "3.5.2",
+    "ncp": "2.0.0",
+    "prettier": "1.19.1",
+    "readline-sync": "1.4.10",
+    "replacestream": "4.0.3",
+    "ts-jest": "24.2.0",
+    "tslib": "1.10.0",
+    "tslint": "5.20.1",
+    "tslint-config-prettier": "1.18.0",
+    "typescript": "3.7.3"
+  },
+  "devDependencies": {
+    "@types/jest": "24.0.23",
+    "@types/node": "12.12.17"
+  }
 }

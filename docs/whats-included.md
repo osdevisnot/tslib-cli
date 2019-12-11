@@ -1,10 +1,10 @@
 # What's Included
 
-## typescript ¯\\_\(ツ\)\_/¯
+## typescript ¯\\\_\(ツ\)\_/¯
 
 We use typescript compiler to build and publish our code. The scaffold includes a `tsconfig.json` with modern and reasonable defaults.
 
-Most notably, we use `"target": "esnext"` to publish modern code without a boilerplate, and `"module": "esnext"` to use modern ES modules in our code. You might tweak this if you like. 
+Most notably, we use `"target": "esnext"` to publish modern code without a boilerplate, and `"module": "esnext"` to use modern ES modules in our code. You might tweak this if you like.
 
 Please note that, `tslib-cli` depends on certain properties in `tsconfig.json`.
 
@@ -30,7 +30,7 @@ Both the test and coverage commands will run all tests found in `tests` director
 
 ## Formatting and Linting
 
-An awesome package should include strict rules for linting and formatting. Especially, if you anticipate more collaborators later on. 
+An awesome package should include strict rules for linting and formatting. Especially, if you anticipate more collaborators later on.
 
 `tslib-cli` uses `prettier` and `tslint` with reasonable default configuration for these tools.
 
@@ -70,4 +70,3 @@ In the `.gitignore` file, we have `dist` since we don’t want the build-files i
 ```
 
 For more information about whitelisting vs blacklisting in NPM packages see [this post from the NPM blog](https://blog.npmjs.org/post/165769683050/publishing-what-you-mean-to-publish)
-
