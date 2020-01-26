@@ -39,7 +39,7 @@
     "typescript": "3.7.3"
   },
   "devDependencies": {
-    "@types/jest": "24.0.23",
+    "@types/jest": "24.9.1",
     "@types/node": "13.5.0"
   }
 }
